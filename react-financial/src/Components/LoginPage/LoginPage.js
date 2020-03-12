@@ -17,7 +17,7 @@ function LoginPage() {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"> <i className="fa fa-user"></i> </span>
                                 </div>
-                                <input name="" className="form-control" placeholder="Enter your email here" type="email"/>
+                                <input name="" className="form-control" placeholder="Enter your email here" type="email" required/>
                             </div> 
                         </div> 
                         <div className="form-group">
@@ -26,7 +26,7 @@ function LoginPage() {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
                                 </div>
-                                <input className="form-control" placeholder="******" type="password"/>
+                                <input className="form-control" placeholder="******" type="password" required/>
                             </div>
                         </div> 
                         <div className="form-group">
