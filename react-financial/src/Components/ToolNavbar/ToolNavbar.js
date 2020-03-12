@@ -49,7 +49,7 @@ function ToolNavbar() {
             </NavText>
         </NavItem>
         
-        <NavItem eventKey="setting" style={{marginTop:"200px"}}>
+        <NavItem eventKey="setting" style={{marginTop:"150px"}}>
             <NavIcon>
                 <i className="fa fa-cog fa-fw" style={{ fontSize: '1.75em' }} />
             </NavIcon>
