@@ -7,6 +7,7 @@
     float: left;
     color: darkgray;
     margin-top: 15px;
+    letter-spacing: normal;
 }
 
 .nav_Navbar {
@@ -26,6 +27,14 @@
     grid-template-columns: 5% 30% 30%;
    
 
+}
+.fa.fa-money{
+    font-size: 40px ;
+    margin-top: 5px;
+}
+
+.Link_Navbar{
+    text-decoration: none;
 }
 
 .header_Navbar{

@@ -11,13 +11,13 @@ function Navbar() {
             
             <i className="fa fa-money"  aria-hidden="true"></i>
 
-            <div className="name_Navbar"><p>NAME</p></div>
+            <div className="name_Navbar"><p>H E R O</p></div>
       
            <nav  className="nav_Navbar">
                <li></li>
-            <li><a href="#">Log-In </a></li>
-            <li><a href="#">Register</a></li>
-            </nav>
+            <li><a className="link_Navbar" href="#">Log-In </a></li>
+            <li><a className="link_Navbar" href="#">Register</a></li>
+            </nav> 
         </ul>
        
         </header>

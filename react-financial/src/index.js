@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import ToolNavbar from './Components/ToolNavbar/ToolNavbar';
 import Navbar from './Components/Navbar/Navbar';
 
-ReactDOM.render(<ToolNavbar />, document.getElementById('root'));   
+ReactDOM.render(<Navbar />, document.getElementById('root'));   
 
 
 
