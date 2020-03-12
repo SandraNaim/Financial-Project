@@ -1,0 +1,40 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+
+
+
+.name_Navbar{
+    float: left;
+    color: darkgray;
+    margin-top: 15px;
+}
+
+.nav_Navbar {
+    display: grid;
+    grid-template-columns: 150% 20% 20%;
+    list-style: none;
+    margin-top: 14px;
+    
+} 
+.nav_Navbar:hover {
+    text-decoration: none;
+}
+
+.container_Navbar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5% 30% 30%;
+   
+
+}
+
+.header_Navbar{
+    background-color:rgb(54, 54, 112);
+    font-family: "Montserrat"; 
+    font-weight: 300;
+}
+
+/* .left_Navbar {
+display: grid;
+grid-template-columns: 4% 4%;
+} */
