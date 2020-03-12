@@ -1,12 +1,13 @@
 import React from 'react';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import './ToolNavbar.css';
 
 
 function ToolNavbar() {
     return (
 
-<SideNav
+<SideNav className="sidenav---_u0En"
     onSelect={(selected) => {
         // Add your code here
     }}
