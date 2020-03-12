@@ -4,7 +4,8 @@ import './RegisterPage.css';
 
 function RegisterPage() {
     return (
-    <div className="row" style={{marginTop:"2%"}}>
+        
+    <div className="row" style={{marginTop:"3%"}}>
         <div className=" col-md-7 mx-auto">
             <div class="card card-signin">
                 <div className="card-body shadow-lg">
