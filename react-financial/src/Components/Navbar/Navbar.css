@@ -42,6 +42,9 @@
     font-family: "Montserrat"; 
     font-weight: 300;
 }
+.sa{
+    color:"white"!important;
+}
 
 /* .left_Navbar {
 display: grid;
