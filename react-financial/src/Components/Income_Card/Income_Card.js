@@ -9,7 +9,7 @@ function Income_Card() {
         <div className="col-sm-10 ">
           <div className="card mt-20">
             <h5 className="card-header text-center " style={{ backgroundColor: 'rgb(54, 54, 112)', color: 'white' }}>Income Card</h5>
-            <div className="card-body">
+            <div className="card-body shadow-lg">
               <table className="table">
                 <thead className="" style={{ backgroundColor: '', border: '2px solid #dee2e6' }}>
                   <tr>

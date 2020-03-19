@@ -1,0 +1,60 @@
+
+.dashboard-container{
+  margin-top:30px;
+  margin-bottom:30px;
+
+}
+.dashboard_total{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    width: 70%;
+    margin-top: 10%;
+    opacity: 0.8;
+}
+.dashboard_total h3{
+  color: darkblue;
+}
+.dashboard_total p{
+  font-size: 30px;
+}
+.dashboard_total:hover{
+  scale: 1.07;
+  opacity: 1;
+}
+/* .datebutton{
+  background-color:"lightblue";
+  border-radius:"40px";
+  height:"60px";
+  width:"300px";
+  text-align:center;
+} */
+.dashboard-circle1{
+    height: 200px;
+    width: 200px;
+    background-color: darkblue;
+    border-radius: 50%;
+    border:1px solid darkblue;
+    display: inline-block;
+    position: absolute;
+    left:130px;
+}
+.dashboard-circle2{
+  height: 150px;
+  width: 150px;
+  background-color: wheat;
+  border-radius: 50%;
+  border:1px solid darkblue;
+  display: inline-block;
+  position: absolute;
+  left:155px;
+  top: 114px;
+  z-index: 10;
+}
+.dashboard-money{
+  position:absolute;
+  bottom:130px;
+  left:190px;
+  font-size:40px;
+  z-index: 10;
+}

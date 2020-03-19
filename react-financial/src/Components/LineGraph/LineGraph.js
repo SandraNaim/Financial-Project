@@ -5,8 +5,8 @@ const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
-      fill: false,
+      label: 'Money in my Pocket',
+      fill: true,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
       borderColor: 'rgba(75,192,192,1)',
@@ -31,8 +31,8 @@ const data = {
 export default class LineGraph extends Component {
   render() {
     return (
-      <div style={{width:"50%"}}>
-        <h2>Line Example</h2>
+      <div >
+        
         <Line ref="chart" data={data} />
       </div>
     );

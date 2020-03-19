@@ -10,8 +10,16 @@ import LineGraph from './Components/LineGraph/LineGraph';
 import BarGraph from './Components/BarGraph/BarGraph';
 import DoughnutGraph from './Components/Doughnut/DoughnutGraph';
 import Income_Card from './Components/Income_Card/Income_Card';
+import RegisterPage from './Components/RegisterPage/RegisterPage';
+import LoginPage from './Components/LoginPage/LoginPage';
+import TotalIE from './Components/TotalIE/TotalIE';
+import MonthPicker from './Components/MonthPicker/MonthPicker'
+import PiButton from './Components/Report/PiButton';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Report from './Components/Report/Report';
+import TotalBar from './Components/Report/TotalBar';
 
-ReactDOM.render(<Income_Card/>, document.getElementById('root'));   
+ReactDOM.render(<Dashboard/>, document.getElementById('root'));   
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
