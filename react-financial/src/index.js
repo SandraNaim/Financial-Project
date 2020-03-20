@@ -12,8 +12,7 @@ import DoughnutGraph from './Components/Doughnut/DoughnutGraph';
 import Income_Card from './Components/Income_Card/Income_Card';
 import Expenses_card from './Components/Expenses_card/Expenses_card';
 import Saving_Card from './Components/Saving_Card/Saving_Card';
-import 'antd/dist/antd.css'; 
-ReactDOM.render(<Expenses_card/>, document.getElementById('root'));   
+import 'antd/dist/antd.css';  
 import RegisterPage from './Components/RegisterPage/RegisterPage';
 import LoginPage from './Components/LoginPage/LoginPage';
 import TotalIE from './Components/TotalIE/TotalIE';
@@ -23,8 +22,8 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Report from './Components/Report/Report';
 import TotalBar from './Components/Report/TotalBar';
 
-ReactDOM.render(<Dashboard/>, document.getElementById('root'));   
 
+ReactDOM.render(<Expenses_card/>, document.getElementById('root'));  
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
