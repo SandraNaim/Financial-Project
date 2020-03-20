@@ -10,8 +10,10 @@ import LineGraph from './Components/LineGraph/LineGraph';
 import BarGraph from './Components/BarGraph/BarGraph';
 import DoughnutGraph from './Components/Doughnut/DoughnutGraph';
 import Income_Card from './Components/Income_Card/Income_Card';
-
-ReactDOM.render(<Income_Card/>, document.getElementById('root'));   
+import Expenses_card from './Components/Expenses_card/Expenses_card';
+import Saving_Card from './Components/Saving_Card/Saving_Card';
+import 'antd/dist/antd.css'; 
+ReactDOM.render(<Expenses_card/>, document.getElementById('root'));   
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
