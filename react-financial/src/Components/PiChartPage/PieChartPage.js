@@ -32,10 +32,11 @@ class PieChartPage extends React.Component {
 
   render() {
     return (
-        <div style={{width:"50%"}}>
+        <div >
             <MDBContainer>
-                <h3 className="mt-5">Pie chart</h3>
+
                 <Pie data={this.state.dataPie} options={{ responsive: true }} />
+                
             </MDBContainer>
         </div>
       

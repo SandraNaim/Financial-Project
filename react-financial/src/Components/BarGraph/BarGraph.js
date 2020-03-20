@@ -18,17 +18,13 @@ const state = {
 export default class BarGraph extends React.Component {
   render() {
     return (
-      <div style={{width:"50%"}}>
+      <div >
         <Bar
           data={state}
           options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
+            
             legend:{
-              display:true,
+              display:false,
               position:'right'
             }
           }}
