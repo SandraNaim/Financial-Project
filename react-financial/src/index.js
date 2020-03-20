@@ -19,7 +19,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Report from './Components/Report/Report';
 import TotalBar from './Components/Report/TotalBar';
 
-ReactDOM.render(<Dashboard/>, document.getElementById('root'));   
+ReactDOM.render(<TotalIE/>, document.getElementById('root'));   
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
