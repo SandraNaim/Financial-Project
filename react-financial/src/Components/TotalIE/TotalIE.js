@@ -16,7 +16,7 @@ class TotalIE extends React.Component {
             <div>
                 <div className="container dashboard-container">
                     <div className="row">
-                        <div className=" col-md-8 mx-auto" >
+                        <div className=" col-md-8 " >
                             <div style={{position:"relative",height:"350px", marginBottom:"10px"}} class="card card-signin">
                                 <div className="card-body shadow-lg">
                                     <h3 className="card-title text-center">In Your Pocket</h3>
@@ -40,7 +40,7 @@ class TotalIE extends React.Component {
                         <div className="tips-part">
                             <h4>TIPS</h4>
                             <br/>
-                            <h6 style={{color:"red",marginLeft:"20px"}}><i>HOW TO SAVE MORE MONEY</i></h6>
+                            <h6 style={{color:"red",marginLeft:"10px"}}><i>HOW TO SAVE MORE MONEY</i></h6>
                             
                             <img src="https://media.giphy.com/media/ruOt3vkom6WGY/giphy.gif" width="150px" alt=""style={{marginLeft:"40px", marginBottom:"10px"}}/>
                             <ol className="Tips-style">
@@ -57,7 +57,7 @@ class TotalIE extends React.Component {
                    
 
                     <div className="row" style={{marginTop:"30px"}}>
-                        <div className="col-md-6" style={{marginTop:"50px", marginLeft:"140px"}}>
+                        <div className="col-md-7" style={{marginTop:"50px"}}>
                                 <LineGraph></LineGraph>
                         </div>
                         <div className="col-md-4">

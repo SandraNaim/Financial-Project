@@ -68,7 +68,7 @@
 
 .tips-part{
   position:absolute; 
-  left:80%;
+  left:75%;
 }
 .tips-part h4 { 
   display: flex; 
@@ -90,7 +90,7 @@ blockquote p:before {
 }
 .tips-part2{
   position:absolute; 
-  left:75%;
+  left:70%;
   top: 120%;
   color: darkmagenta;
 }
