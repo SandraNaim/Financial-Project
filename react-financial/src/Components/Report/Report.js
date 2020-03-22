@@ -29,34 +29,36 @@ render() {
     return (
         <div className="container dashboard-container">
 
-            <div className="row" style={{marginTop:"100px"}}>
-                <div className="col-md-12 report-box">
+            <div className="row" >
+                {/* <div className="col-md-5 report-box">
                     <div className="btn-group report-btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info mr-2">Weekly</button>
-                        <button type="button" class="btn btn-info mr-2">Monthly</button>
-                        <button type="button" class="btn btn-info">Yearly</button>
+                        <button type="button" class="report-button mr-2">Weekly</button>
+                        <button type="button" class="report-button mr-2">Monthly</button>
+                        <button type="button" class="report-button">Yearly</button>
                     </div>
+                </div> */}
+                <div className="col-md-8 report-switch">
+                  <h4> 
+                      <div><a>|</a> <a href=""><u>Weekly</u></a> <a>|</a> <a href=""><u>Monthly</u></a> <a>|</a> <a href=""><u>Yearly</u></a> <a>|</a> 
+                      </div>
+                      <hr />
+                    </h4>
+                </div>
                 
-                    <div style={{marginTop:"25px", marginLeft:"20px"}}>
-                        <button class="report-button mr-2">Incomes </button>
-                        <button class="report-button">Expenses</button>
-
-                        {/* <span ><PiButton styleBtn = 'primary' Btntype = 'Income'></PiButton>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <span><PiButton styleBtn = 'secondary' Btntype = 'Expenses'></PiButton></span> */}
-                    </div>
-                </div>
             </div>       
-            <br/><br/>
 
-            <div className="row" style={{marginTop:"100px"}}>
+            <div className="row" style={{justifyContent:"space-between", marginTop:"50px"}}>
                 <div className="col-md-8">
-                    <div  style={{marginLeft:"150px"}}>
                     <TotalBar />
-                    </div>
                 </div>
+                <div className="col-md-3">
+                    <blockquote class="blockquote">
+                            <p class="mb-0">However beautiful the strategy, you should occasionally look at the results.</p>
+                            <footer class="blockquote-footer">Winston Churchill</footer>
+                    </blockquote>
+                </div>              
             </div>
 
-            <br /><br /><br />
 
             <div className="row" style={{marginTop:"100px"}}>
                 <div className="col-md-6" style={{textAlign:"center", color:"darkblue"}}>

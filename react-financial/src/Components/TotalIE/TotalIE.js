@@ -15,8 +15,8 @@ class TotalIE extends React.Component {
         return (
             <div>
                 <div className="container dashboard-container">
-                    <div className="row">
-                        <div className=" col-md-8 " >
+                    <div className="row" style={{justifyContent:"space-between"}}>
+                        <div className=" col-md-8 align-self-center" >
                             <div style={{position:"relative",height:"350px", marginBottom:"10px"}} class="card card-signin">
                                 <div className="card-body shadow-lg">
                                     <h3 className="card-title text-center">In Your Pocket</h3>
@@ -37,10 +37,10 @@ class TotalIE extends React.Component {
 
 
 
-                        <div className="tips-part">
+                        <div className="tips-part col-md-3" >
                             <h4>TIPS</h4>
                             <br/>
-                            <h6 style={{color:"red",marginLeft:"10px"}}><i>HOW TO SAVE MORE MONEY</i></h6>
+                            <h6 style={{color:"red",marginLeft:"20px"}}><i>HOW TO SAVE MORE MONEY</i></h6>
                             
                             <img src="https://media.giphy.com/media/ruOt3vkom6WGY/giphy.gif" width="150px" alt=""style={{marginLeft:"40px", marginBottom:"10px"}}/>
                             <ol className="Tips-style">
@@ -51,16 +51,16 @@ class TotalIE extends React.Component {
                                 <li>Keep Track on your Expenses</li>
                             </ol>
                         </div>
-                        </div>
+                    </div>
                     
 
                    
 
-                    <div className="row" style={{marginTop:"30px"}}>
-                        <div className="col-md-7" style={{marginTop:"50px"}}>
+                    <div className="row">
+                        <div className="col-md-6 align-self-center" style={{marginTop:"50px"}}>
                                 <LineGraph></LineGraph>
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <div className="dashboard_total">
                                 <h3>Total Income</h3>
                                 <p>200$</p>
@@ -75,15 +75,11 @@ class TotalIE extends React.Component {
 
 
                         
-                        <div className="tips-part2">
+                        <div className="col-md-3 align-self-center tips-part2" >
                         <blockquote>
-                            <div class="row">
-                                <div class="col-sm-3 text-center">
-                                </div>
-                                <div class="col-sm-9">
+                            
                                 <p>All days are NOT the same. Save for rainy day. When you don't work, SAVING will work for you.</p>
-                                </div>
-                            </div>
+                               
                         </blockquote>
                         </div>
 

@@ -2,7 +2,7 @@
 .dashboard-container{
   margin-top:30px;
   margin-bottom:30px;
-
+  
 }
 .dashboard_total{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -65,11 +65,10 @@
   font-family: Aclonica; 
 }
 
-
 .tips-part{
-  position:absolute; 
-  left:75%;
+  text-align:center;
 }
+
 .tips-part h4 { 
   display: flex; 
   flex-direction: row; 
@@ -88,10 +87,10 @@ blockquote p:before {
   float: left;
   margin-right: 10px;
 }
-.tips-part2{
-  position:absolute; 
-  left:70%;
-  top: 120%;
+ .tips-part2{
   color: darkmagenta;
-}
+  margin: 0;
+  font-size: large;
+
+} 
 

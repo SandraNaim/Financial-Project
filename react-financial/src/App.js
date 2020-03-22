@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import ToolNavbar from './Components/ToolNavbar/ToolNavbar';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Income_Card from './Components/Income_Card/Income_Card';
+import Expenses_card from './Components/Expenses_card/Expenses_card';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/">
+              <div className="container">
+                <Route path='/'>
+                  <ToolNavbar></ToolNavbar>
+                  <div>
+                    <Switch>
+                      <Route path="/" component={Dashboard} exact />
+                      <Route path="/Transactions/income" component={Income_Card} />                     
+                      <Route path="/Transactions/income" component={Expenses_card} />
+                    </Switch>
+                  </div>
+                  {/* <Footer></Footer> */}
+
+                </Route>
+              </div>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </>
   );
 }
 
