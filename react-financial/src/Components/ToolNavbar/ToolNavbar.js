@@ -9,6 +9,7 @@ import Income_Card from '../Income_Card/Income_Card';
 import Expenses_card from '../Expenses_card/Expenses_card';
 import Transaction_income from '../../Pages/Transaction_income/Transaction_income';
 import Transaction_expense from '../../Pages/Transaction_expense/Transaction_expense';
+import Saving from '../../Pages/Saving/Saving';
 
 
 
@@ -35,6 +36,14 @@ function ToolNavbar() {
             </NavIcon>
             <NavText>
                 Dashboard
+            </NavText>
+        </NavItem>
+        <NavItem eventKey="Saving">
+            <NavIcon>
+                <i className="fa fa-fw fa-save" style={{ fontSize: '1.75em' }} />
+            </NavIcon>
+            <NavText>
+                Saving Goals
             </NavText>
         </NavItem>
         <NavItem eventKey="Transaction">
@@ -92,6 +101,7 @@ function ToolNavbar() {
 </SideNav>
             <main>
                 <Route path="/Dashboard" exact component={props => <Dashboard />} />
+                <Route path="/Saving" component={props => <Saving />} />
                 <Route path="/Transactions/income" component={props => <Transaction_income/>} />
                 <Route path="/Transactions/expenses" component={props => <Transaction_expense/>} />
             </main>
