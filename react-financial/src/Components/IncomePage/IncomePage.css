@@ -1,0 +1,13 @@
+table .tr-description td {
+    border-top: none !important;
+}
+.second td {
+    border: none;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+table {
+    text-align: center;
+}

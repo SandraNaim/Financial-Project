@@ -21,6 +21,7 @@ import PiButton from './Components/Report/PiButton';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Report from './Components/Report/Report';
 import TotalBar from './Components/Report/TotalBar';
+import IncomePage from './Components/IncomePage/IncomePage';
 
 
 ReactDOM.render(<App/>, document.getElementById('root'));  
