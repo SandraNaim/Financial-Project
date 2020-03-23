@@ -5,25 +5,25 @@ import { MDBContainer } from "mdbreact";
 class PieChartPage extends React.Component {
   state = {
     dataPie: {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+      labels: ["#dc3f76", "#9fb328", "#f96232", "#7446b9", "#2e9ca6", "#2ea674"],
       datasets: [
         {
-          data: [300, 50, 100, 40, 120],
+          data: [300, 50, 100, 40, 120, 10],
           backgroundColor: [
-            "#F7464A",
-            "#46BFBD",
-            "#FDB45C",
-            "#949FB1",
-            "#4D5360",
-            "#AC64AD"
+            "#dc3f76",
+            "#9fb328",
+            "#f96232",
+            "#7446b9",
+            "#2e9ca6",
+            "#2ea674"
           ],
           hoverBackgroundColor: [
-            "#FF5A5E",
-            "#5AD3D1",
-            "#FFC870",
-            "#A8B3C5",
-            "#616774",
-            "#DA92DB"
+            "#dc3f9d",
+            "#b3a428",
+            "#f93234",
+            "#5746b9",
+            "#2ea692",
+            "#2ea656"
           ]
         }
       ]
