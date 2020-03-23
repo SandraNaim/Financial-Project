@@ -40,7 +40,7 @@ function RegisterPage() {
                         </div>
 
                         <div className="row">
-                            <div className="col-md-12">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <h6>Email</h6>
                                     <div className="input-group">
@@ -48,6 +48,23 @@ function RegisterPage() {
                                             <span className="input-group-text"> <i className="fa fa-envelope"></i> </span>
                                         </div>
                                         <input name="" className="form-control" placeholder="Enter your email here" type="email" required/>
+                                    </div> 
+                                </div> 
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <h6>Base Currency</h6>
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text"> <i className="fa fa-dollar"></i> </span>
+                                        </div>
+                                        <select class="form-control" id="currency" required>
+                                            <option>$</option>
+                                            <option>L.L</option>
+                                            <option>AED</option>
+                                            <option>Yen</option>
+                                            <option>Shekels</option>
+                                        </select>
                                     </div> 
                                 </div> 
                             </div>
