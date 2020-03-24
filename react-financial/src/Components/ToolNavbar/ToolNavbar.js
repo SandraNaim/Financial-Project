@@ -10,6 +10,7 @@ import Expenses_card from '../Expenses_card/Expenses_card';
 import Transaction_income from '../../Pages/Transaction_income/Transaction_income';
 import Transaction_expense from '../../Pages/Transaction_expense/Transaction_expense';
 import Saving from '../../Pages/Saving/Saving';
+import MySetting from '../../Pages/MySetting/MySetting';
 
 
 
@@ -73,7 +74,7 @@ function ToolNavbar() {
             </NavText>
         </NavItem> */}
         
-        <NavItem eventKey="setting" style={{marginTop:"150px"}}>
+        <NavItem eventKey="Setting" style={{marginTop:"150px"}}>
             <NavIcon>
                 <i className="fa fa-cog fa-fw" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -104,6 +105,8 @@ function ToolNavbar() {
                 <Route path="/Saving" component={props => <Saving />} />
                 <Route path="/Transactions/income" component={props => <Transaction_income/>} />
                 <Route path="/Transactions/expenses" component={props => <Transaction_expense/>} />
+                <Route path="/Setting" component={props => <MySetting/>} />
+
             </main>
         </React.Fragment>
     )}
