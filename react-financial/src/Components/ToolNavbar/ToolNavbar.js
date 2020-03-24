@@ -1,25 +1,50 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './ToolNavbar.css';
+import IncomePage from '../IncomePage/IncomePage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Dashboard from '../../Pages/Dashboard/Dashboard';
+import Income_Card from '../Income_Card/Income_Card';
+import Expenses_card from '../Expenses_card/Expenses_card';
+import Transaction_income from '../../Pages/Transaction_income/Transaction_income';
+import Transaction_expense from '../../Pages/Transaction_expense/Transaction_expense';
+import Saving from '../../Pages/Saving/Saving';
+import MySetting from '../../Pages/MySetting/MySetting';
+
 
 
 function ToolNavbar() {
     return (
 
-<SideNav className="sidenav---_u0En"
-    onSelect={(selected) => {
-        // Add your code here
-    }}
+<Router>
+    <Route render={({ location, history }) => (
+        <React.Fragment>
+            
+            <SideNav className="sidenav---_u0En"
+                onSelect={(selected) => {
+                    const to = '/' + selected;
+                    if (location.pathname !== to) {
+                        history.push(to);
+                    }
+                }}
 >
     <SideNav.Toggle /> 
-    <SideNav.Nav defaultSelected="dashboard">
-        <NavItem eventKey="dashboard">
+    <SideNav.Nav defaultSelected="Dashboard">
+        <NavItem eventKey="Dashboard">
             <NavIcon>
                 <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
             </NavIcon>
             <NavText>
                 Dashboard
+            </NavText>
+        </NavItem>
+        <NavItem eventKey="Saving">
+            <NavIcon>
+                <i className="fa fa-fw fa-save" style={{ fontSize: '1.75em' }} />
+            </NavIcon>
+            <NavText>
+                Saving Goals
             </NavText>
         </NavItem>
         <NavItem eventKey="Transaction">
@@ -29,27 +54,27 @@ function ToolNavbar() {
             <NavText>
                 Transaction
             </NavText>
-            <NavItem eventKey="transaction/incomes">
+            <NavItem eventKey="Transactions/income">
                 <NavText>
                     Incomes
                 </NavText>
             </NavItem>
-            <NavItem eventKey="transaction/expenses">
+            <NavItem eventKey="Transactions/expenses">
                 <NavText>
                     Expenses
                 </NavText>
             </NavItem>
         </NavItem>
-        <NavItem eventKey="reports">
+        {/* <NavItem eventKey="reports">
             <NavIcon>
                 <i className="fa fa-bar-chart" style={{ fontSize: '1.75em' }} />
             </NavIcon>
             <NavText>
                 Reports
             </NavText>
-        </NavItem>
+        </NavItem> */}
         
-        <NavItem eventKey="setting" style={{marginTop:"150px"}}>
+        <NavItem eventKey="Setting" style={{marginTop:"150px"}}>
             <NavIcon>
                 <i className="fa fa-cog fa-fw" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -75,7 +100,18 @@ function ToolNavbar() {
         </NavItem>
     </SideNav.Nav>
 </SideNav>
+            <main>
+                <Route path="/Dashboard" exact component={props => <Dashboard />} />
+                <Route path="/Saving" component={props => <Saving />} />
+                <Route path="/Transactions/income" component={props => <Transaction_income/>} />
+                <Route path="/Transactions/expenses" component={props => <Transaction_expense/>} />
+                <Route path="/Setting" component={props => <MySetting/>} />
 
+            </main>
+        </React.Fragment>
+    )}
+    />
+</Router>
     )
 }
 

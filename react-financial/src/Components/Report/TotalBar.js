@@ -5,6 +5,8 @@ import data from './data';
 function TotalBar () {
   return (
     <div>
+      <h5>Bar Graph showing your <b>Icomes</b> and <b>Expenses</b></h5>
+      <br/>
     <BarChart width={730} height={250} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />

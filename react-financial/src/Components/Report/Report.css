@@ -3,8 +3,7 @@
   
   }
 .report-box{
-    background-color:lightblue;
-     border-radius:40px;
+   border-top: 1px solid black;
      height:100px ;
      display:flex;
      justify-content:space-between;
@@ -15,7 +14,7 @@
      margin-left:20px;
 }
 .report-button {
-    padding: 7px 17px;
+    padding: 2px 15px;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
@@ -33,4 +32,10 @@
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+  }
+
+
+
+  .report-switch{
+    text-align:center;
   }
