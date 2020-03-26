@@ -46,11 +46,11 @@ class Setting_component extends React.Component {
         <div className="row " style={{marginTop:"3%", marginLeft:"3%"}}>
             <div className="col-md-10 setting_one">
                 <h6>Base Currency</h6>
-                <div className="form-group " style={{ marginLeft:"20%"}}>
+                <div className="form-group " style={{ marginLeft:"20%",marginRight:"15%"}}>
                    
                     <div className="input-group"style={{width:"300px"}} >
                                            
-                        <select class="form-control" id="currency" >
+                        <select class="form-control" id="currency" disabled="disabled">
                             <option>$</option>
                             <option>L.L</option>
                             <option>AED</option>
@@ -58,6 +58,9 @@ class Setting_component extends React.Component {
                             <option>Shekels</option>
                         </select>
                     </div> 
+                </div>
+                <div>
+                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Update</button>
                 </div>
             </div>
         </div>

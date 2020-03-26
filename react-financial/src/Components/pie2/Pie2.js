@@ -9,13 +9,13 @@ class Pie2 extends React.Component {
         return(
             <>
               <div >
-                    <h5>Pie Chart showing your <b>Incomes</b></h5> 
+                    <h5><b>Incomes</b> Pie Chart</h5> 
                     <br/>
                     <PieChartPage />
                 </div>
                 <br/><br/>
                 <div>
-                    <h5>Pie Chart showing your <b>Expenses</b></h5> 
+                    <h5><b>Expenses</b> Pie Chart</h5> 
                     <br/>
                     <PieChartPage />
                 </div>

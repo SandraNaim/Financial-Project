@@ -54,9 +54,10 @@ render() {
                   <h4> 
                       <div><a>|</a> <a href=""><u>Weekly</u></a> <a>|</a> <a href=""><u>Monthly</u></a> <a>|</a> <a href=""><u>Yearly</u></a> <a>|</a> 
                       </div>
-                      <hr />
-                        
+                                              
                     </h4>
+                    <br/>
+                    <div style={{fontSize:"20px"}}><i>Reports for traking your income and expenses</i></div>
                 </div>
                 
             </div>       
@@ -73,7 +74,7 @@ render() {
 
                 </div>
                 <div className="col-md-3">
-                    <blockquote class="blockquote">
+                    <blockquote class="blockquote tips-part3">
                             <p class="mb-0">However beautiful the strategy, you should occasionally look at the results.</p>
                             <footer class="blockquote-footer">Winston Churchill</footer>
                     </blockquote>
