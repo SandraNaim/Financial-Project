@@ -3,6 +3,7 @@ import Totalchart from './Totalchart';
 import BarGraph from '../BarGraph/BarGraph';
 import './TotalIE.css';
 import LineGraph from '../LineGraph/LineGraph';
+import CircleComponent from '../CircleComponent/CircleComponent';
 
 
 class TotalIE extends React.Component {
@@ -15,6 +16,7 @@ class TotalIE extends React.Component {
         return (
             <div>
                 <div className="container dashboard-container">
+
                     <div className="row">
                         <div className="col-md-6">
                             <div><h3>Your Dashboard</h3> </div>
@@ -26,16 +28,15 @@ class TotalIE extends React.Component {
                         <div className=" col-md-8 align-self-center" >
                             <div className="card card-signin" style={{position:"relative",height:"430px", marginBottom:"10px"}} >
                                 <div className="card-body shadow-lg">
-                                    <h3 className="card-title text-center">In Your Pocket</h3>
+                                    <h3 className="card-title text-center">Current Status</h3>
                                     <hr />
                                     <div className="row">
                                         <div className="col-md-6 mx-auto" >
-                                                <div class="spacer"></div>
-                                                <div class="dashboard-circle"><a><h4>Saved Money</h4><br/><div style={{fontSize:"30px"}}>100$</div></a> </div>
-                                                <div>
-                                            <span style={{display: "inline-block"}}>
-                                                <input type="date" className="form-control dashboard-date" aria-describedby="emailHelp" />
-                                            </span>
+                                                <CircleComponent />
+                                            <div>
+                                                <span style={{display: "inline-block", marginBottom:"500px"}}>
+                                                    <input type="date" className="form-control dashboard-date" aria-describedby="emailHelp" />
+                                                </span>
                                             </div>
                                         </div>
                                     
@@ -46,7 +47,7 @@ class TotalIE extends React.Component {
                                             </div>
                                         <br />
                                             <div className="dashboard_total">
-                                                <h3>Total Expenses</h3>
+                                                <h3>Total Expense</h3>
                                                 <p>150$</p>
                                             </div>
                                         </div>
@@ -79,12 +80,13 @@ class TotalIE extends React.Component {
                     
 
                    
-
+                    <br/><br/>
                     <div className="row" style={{justifyContent:"space-between", textAlign:"center"}}>
                         <div className="col-md-6 align-self-center" style={{marginTop:"50px", marginLeft:"100px"}}>
                             <h5>Tracking your saving money</h5>
                             <br/>
                                 <LineGraph></LineGraph>
+                                <h5>So far, you have saved in total: <b>100$</b></h5>
                         </div>
                         
 
