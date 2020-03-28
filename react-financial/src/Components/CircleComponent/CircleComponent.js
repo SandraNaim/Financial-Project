@@ -13,6 +13,12 @@ class CircleComponent extends React.Component {
 
     constructor(props){
         super(props);
+        this.state={
+            realValue : '',
+            titleCircle : '',
+            bothnb : [],
+            restnb : '',
+        }
     }
     
     render() {
@@ -37,15 +43,15 @@ class CircleComponent extends React.Component {
                     r={circleConfig.radio}
                     fill="transparent"
                     stroke="teal"
-                    strokeDasharray="75 25"
-                    strokeDashoffset="25"
+                    strokeDasharray={this.props.bothnb}
+                    strokeDashoffset={this.props.restnb}
                     />
                     <g className="circle-label">
                     <text x="22%" y="50%" className="circle-percentage">
-                        75%
+                        {this.props.realValue}
                     </text>
                     <text x="18%" y="70%" className="circle-text">
-                        Percentage of income left
+                        Percentage of {this.props.titleCircle} left
                     </text>
                     </g>
                 </svg>

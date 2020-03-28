@@ -4,12 +4,14 @@ import './Report.css';
 import PiButton from './PiButton';
 import TotalBar from './TotalBar';
 import Pie2 from '../pie2/Pie2';
+import TwoToolbar from '../TwoToolbar/TwoToolbar';
 
 
 
 function Graphswitch(props){
     if(props.value){
-        return <TotalBar />
+        // return <TotalBar />
+        return <TwoToolbar />
     }
         return <Pie2 />
 }
@@ -51,13 +53,14 @@ render() {
             <div className="row" >
                
                 <div className="col-md-8 report-switch">
+                    <div style={{fontSize:"20px"}}><i>Reports for traking your income and expenses</i></div>
                   <h4> 
                       <div><a>|</a> <a href=""><u>Weekly</u></a> <a>|</a> <a href=""><u>Monthly</u></a> <a>|</a> <a href=""><u>Yearly</u></a> <a>|</a> 
                       </div>
                                               
                     </h4>
-                    <br/>
-                    <div style={{fontSize:"20px"}}><i>Reports for traking your income and expenses</i></div>
+                    
+                    
                 </div>
                 
             </div>       

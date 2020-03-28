@@ -25,6 +25,7 @@ import IncomePage from './Components/IncomePage/IncomePage';
 import Pie2 from './Components/pie2/Pie2';
 import Category from './Components/Category/Category';
 import CircleComponent from './Components/CircleComponent/CircleComponent';
+import NewToolbar from './Components/NewToolbar/NewToolbar';
 
 ReactDOM.render(<App/>, document.getElementById('root'));  
 // If you want your app to work offline and load faster, you can change

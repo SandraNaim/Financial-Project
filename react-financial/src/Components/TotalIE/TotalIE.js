@@ -26,13 +26,14 @@ class TotalIE extends React.Component {
                     <br/><br/>
                     <div className="row" style={{justifyContent:"space-between"}}>
                         <div className=" col-md-8 align-self-center" >
-                            <div className="card card-signin" style={{position:"relative",height:"430px", marginBottom:"10px"}} >
+                            <div className="card card-signin" style={{position:"relative",height:"460px", marginBottom:"10px"}} >
                                 <div className="card-body shadow-lg">
                                     <h3 className="card-title text-center">Current Status</h3>
                                     <hr />
                                     <div className="row">
                                         <div className="col-md-6 mx-auto" >
-                                                <CircleComponent />
+                                                <CircleComponent realValue='75%' titleCircle='income' restnb='25' bothnb='75, 25'/>
+                                                <br/>
                                             <div>
                                                 <span style={{display: "inline-block", marginBottom:"500px"}}>
                                                     <input type="date" className="form-control dashboard-date" aria-describedby="emailHelp" />
@@ -45,7 +46,7 @@ class TotalIE extends React.Component {
                                                 <h3>Total Income</h3>
                                                 <p>200$</p>
                                             </div>
-                                        <br />
+                                        <br /><br /><br />
                                             <div className="dashboard_total">
                                                 <h3>Total Expense</h3>
                                                 <p>150$</p>
@@ -82,11 +83,15 @@ class TotalIE extends React.Component {
                    
                     <br/><br/>
                     <div className="row" style={{justifyContent:"space-between", textAlign:"center"}}>
-                        <div className="col-md-6 align-self-center" style={{marginTop:"50px", marginLeft:"100px"}}>
-                            <h5>Tracking your saving money</h5>
+                        <div className="col-md-8 align-self-center" style={{marginTop:"50px", marginLeft:"20px"}}>
+                            <h5 style={{color:"darkblue"}}>Tracking your recent SAVING GOALS</h5>
                             <br/>
-                                <LineGraph></LineGraph>
-                                <h5>So far, you have saved in total: <b>100$</b></h5>
+                            <div style={{display:"flex", float:"left"}}>
+                               <div style={{width:"250px"}}> <CircleComponent realValue='63%' titleCircle='goal1' restnb='37' bothnb='63, 37'/> <div>End Date: </div> </div>
+                               <div style={{width:"250px"}}> <CircleComponent realValue='15%' titleCircle='goal2' restnb='85' bothnb='15, 85'/> <div>End Date: </div> </div>
+                               <div style={{width:"250px"}}> <CircleComponent realValue='10%' titleCircle='goal3' restnb='90' bothnb='10, 90'/> <div>End Date: </div> </div>
+
+                            </div>
                         </div>
                         
 
