@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ToolNavbar from './Components/ToolNavbar/ToolNavbar';
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './Components/Landing_Navbar/Landing_Navbar';
 import PieChartPage from './Components/PiChartPage/PieChartPage';
 import LineGraph from './Components/LineGraph/LineGraph';
 import BarGraph from './Components/BarGraph/BarGraph';
@@ -26,6 +26,8 @@ import Pie2 from './Components/pie2/Pie2';
 import Category from './Components/Category/Category';
 import CircleComponent from './Components/CircleComponent/CircleComponent';
 import NewToolbar from './Components/NewToolbar/NewToolbar';
+import Landing_Page from './Pages/Landing_Page/Landing_Page';
+import Landing_Navbar from './Components/Landing_Navbar/Landing_Navbar';
 
 ReactDOM.render(<App/>, document.getElementById('root'));  
 // If you want your app to work offline and load faster, you can change

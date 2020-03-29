@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 
 function Category() {
@@ -36,7 +38,9 @@ function Category() {
                             </div>
                         
                             <div className="form-group text-center">
-                                <button type="submit" className="btn btn-primary">Continue</button>
+                                <Link to="/income_card">
+                                <button type="button" className="btn btn-primary">Continue</button>
+                                </Link>
                             </div> 
                             </div>
                         </div>

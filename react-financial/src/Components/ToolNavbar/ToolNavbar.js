@@ -30,8 +30,8 @@ function ToolNavbar() {
                 }}
 >
     <SideNav.Toggle /> 
-    <SideNav.Nav defaultSelected="Dashboard">
-        <NavItem eventKey="Dashboard">
+    <SideNav.Nav defaultSelected="dashboard">
+        <NavItem eventKey="dashboard">
             <NavIcon>
                 <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -39,7 +39,7 @@ function ToolNavbar() {
                 Dashboard
             </NavText>
         </NavItem>
-        <NavItem eventKey="Saving">
+        <NavItem eventKey="saving">
             <NavIcon>
                 <i className="fa fa-fw fa-save" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -47,19 +47,19 @@ function ToolNavbar() {
                 Saving Goals
             </NavText>
         </NavItem>
-        <NavItem eventKey="Transaction">
+        <NavItem eventKey="transaction">
             <NavIcon>
                 <i className="fa fa-money" style={{ fontSize: '1.75em' }} />
             </NavIcon>
             <NavText>
                 Transaction
             </NavText>
-            <NavItem eventKey="Transactions/income">
+            <NavItem eventKey="ransactions/income">
                 <NavText>
                     Incomes
                 </NavText>
             </NavItem>
-            <NavItem eventKey="Transactions/expenses">
+            <NavItem eventKey="transactions/expenses">
                 <NavText>
                     Expenses
                 </NavText>
@@ -74,7 +74,7 @@ function ToolNavbar() {
             </NavText>
         </NavItem> */}
         
-        <NavItem eventKey="Setting" style={{marginTop:"150px"}}>
+        <NavItem eventKey="setting" style={{marginTop:"150px"}}>
             <NavIcon>
                 <i className="fa fa-cog fa-fw" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -101,12 +101,12 @@ function ToolNavbar() {
     </SideNav.Nav>
 </SideNav>
             <main>
-                <Route path="/Dashboard" exact component={props => <Dashboard />} />
-                <Route path="/Saving" component={props => <Saving />} />
-                <Route path="/Transactions/income" component={props => <Transaction_income/>} />
-                <Route path="/Transactions/expenses" component={props => <Transaction_expense/>} />
-                <Route path="/Setting" component={props => <MySetting/>} />
-
+                <Route path="/dashboard" exact component={props => <Dashboard />} />
+                <Route path="/saving" component={props => <Saving />} />
+                <Route path="/transactions/income" component={props => <Transaction_income/>} />
+                <Route path="/transactions/expenses" component={props => <Transaction_expense/>} />
+                <Route path="/setting" component={props => <MySetting/>} />
+               
             </main>
         </React.Fragment>
     )}

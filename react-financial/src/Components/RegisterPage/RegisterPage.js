@@ -1,5 +1,7 @@
 import React from 'react';
 import './RegisterPage.css';
+import {Link} from 'react-router-dom';
+
 
 
 function RegisterPage() {
@@ -98,7 +100,9 @@ function RegisterPage() {
                         <p className="text-center">To start creating your account click the Register button</p>
                      
                         <div className="form-group text-center">
-                            <button type="submit" className="btn btn-primary">Register</button>
+                            <Link to="/category">
+                                <button type="button" className="btn btn-primary">Register</button>
+                            </Link>
                         </div> 
                         
                     </form>
