@@ -24,19 +24,20 @@ import TotalBar from './Components/Report/TotalBar';
 import IncomePage from './Components/IncomePage/IncomePage';
 import Pie2 from './Components/pie2/Pie2';
 import Category from './Components/Category/Category';
-<<<<<<< HEAD
+
 import Transaction_income from './Pages/Transaction_income/Transaction_income'
 import Saving from './Pages/Saving/Saving';
 import ExpensesPage from './Components/ExpensesPage/ExpensesPage';
 import Transaction_expense from './Pages/Transaction_expense/Transaction_expense';
-=======
+
 import CircleComponent from './Components/CircleComponent/CircleComponent';
 import NewToolbar from './Components/NewToolbar/NewToolbar';
 import Landing_Page from './Pages/Landing_Page/Landing_Page';
 import Landing_Navbar from './Components/Landing_Navbar/Landing_Navbar';
->>>>>>> f148d1012feb6f03914fcd7b8add50faf7152f5c
+import Setting_component from './Components/Setting_component/Setting_component';
 
-ReactDOM.render(<Transaction_income />, document.getElementById('root'));  
+
+ReactDOM.render(<Setting_component/>, document.getElementById('root'));  
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

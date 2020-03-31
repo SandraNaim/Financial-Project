@@ -118,7 +118,17 @@ class Expenses_Card extends React.Component {
     );
   }
 
-  handleContinue = () => {
+  handleContinue = (event) => {
+
+    event.preventDefault();
+    if(this.state.items.length > 0){
+        this.props.history.push("/");
+    } else {
+        alert('Please add at least 1 expense')
+    }
+
+
+
     const expenses = this.state.items;
 
     const expensesWithErrors = expenses.filter(expense => {

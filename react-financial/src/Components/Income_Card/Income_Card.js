@@ -113,7 +113,16 @@ class Income_Card extends React.Component {
     );
   }
 
-  handleContinue = () => {
+  handleContinue = (event) => {
+    event.preventDefault();
+        if(this.state.items.length > 0){
+            this.props.history.push("/expenses_card");
+        } else {
+            alert('Please add at least 1 income')
+        }
+
+
+        
     const incomes = this.state.items;
 
     const incomesWithErrors = incomes.filter(income => {

@@ -53,9 +53,9 @@ class Setting_component extends React.Component {
           }
           const { name, password, id_currency, id } = props;
     
-          const response = await fetch(`http://localhost:8000/api/setting/update?id=${id}&name=${name}&password=${password}&id_currency=${id_currency}`);
-          const result = await response.json();
-          if (result.success) {
+          const response = await fetch(`http://localhost:8000/api/users/update?id=${id}&name=${name}&password=${password}&id_currency=${id_currency}`);
+          const json = await response.json();
+          if (json.success) {
             // we update the user, to reproduce the database changes:
             const settings = this.state.settings.map(settingY => {
               // if this is the contact we need to change, update it. This will apply to exactly
@@ -76,7 +76,7 @@ class Setting_component extends React.Component {
             });
             this.setState({ settings, error: "" });
           } else {
-            this.setState({ error: result.message });
+            this.setState({ error: json.message });
           }
         } catch (err) {
           this.setState({ error: err });
@@ -94,9 +94,9 @@ class Setting_component extends React.Component {
           }
           const { category, id } = props;
     
-          const response = await fetch(`http://localhost:8000/api/setting/update?id=${id}&category=${category}`);
-          const result = await response.json();
-          if (result.success) {
+          const response = await fetch(`http://localhost:8000/api/categories/update?id=${id}&category=${category}`);
+          const json = await response.json();
+          if (json.success) {
             // we update the user, to reproduce the database changes:
             const settings2 = this.state.settings2.map(settingY => {
               // if this is the contact we need to change, update it. This will apply to exactly
@@ -116,7 +116,7 @@ class Setting_component extends React.Component {
             });
             this.setState({ settings2, error: "" });
           } else {
-            this.setState({ error: result.message });
+            this.setState({ error: json.message });
           }
         } catch (err) {
           this.setState({ error: err });
@@ -136,7 +136,7 @@ class Setting_component extends React.Component {
                     <h6>Change your Name</h6>
                     <div className="form-group" style={{ marginLeft:"15%",marginRight:"15%"}}>
 
-                        <input disabled="disabled" style={{width:"300px"}} type="text" class="form-control" id="username" placeholder="Enter your name"/>
+                        <input disabled="disabled" name="namee" style={{width:"300px"}} type="text" class="form-control" id="username" placeholder="Enter your name"/>
                     </div>
                     
                 </div>
@@ -148,7 +148,7 @@ class Setting_component extends React.Component {
                     <h6>Change your Password</h6>
                     <div className="form-group " style={{ marginLeft:"12%",marginRight:"15%"}}>
 
-                        <input disabled="disabled" style={{width:"300px"}} type="text" class="form-control" id="userpassword" placeholder="Enter your password"/>
+                        <input disabled="disabled" name="passwordd" style={{width:"300px"}} type="text" class="form-control" id="userpassword" placeholder="Enter your password"/>
                     </div>
                     
                 </div>
@@ -161,7 +161,7 @@ class Setting_component extends React.Component {
                     
                         <div className="input-group"style={{width:"300px"}} >
                                             
-                            <select class="form-control" id="currency" disabled="disabled">
+                            <select class="form-control" name="id_currencyy" id="currency" disabled="disabled">
                                 <option>$</option>
                                 <option>L.L</option>
                                 <option>AED</option>
@@ -191,7 +191,7 @@ class Setting_component extends React.Component {
                     <h6>Income/Expenses Category</h6>
                     <div className="form-group " style={{ marginLeft:"8%"}}>
 
-                        <input disabled="disabled" style={{width:"300px"}} type="text" class="form-control" id="category" placeholder="Enter your category"/>
+                        <input disabled="disabled" name="categoryy" style={{width:"300px"}} type="text" class="form-control" id="category" placeholder="Enter your category"/>
                     
                     
                     </div>
