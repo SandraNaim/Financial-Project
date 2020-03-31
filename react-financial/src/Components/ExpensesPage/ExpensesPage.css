@@ -8,3 +8,20 @@
 table {
     text-align: center;
 }
+.wide_ExpensesPage {
+
+    width: 1400px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.sizeStartDate_ExpensesPage{
+    min-width: 120px;
+}
+
+.b9_IExpensesPage {
+    text-align: right!important;
+}
+.sizeDes_ExpensesPage {
+    max-width: 100px;
+}

@@ -11,3 +11,21 @@ table .tr-description td {
 table {
     text-align: center;
 }
+
+.wide_IncomePage {
+
+    width: 1400px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.sizeStartDate_IncomePage {
+    min-width: 120px;
+}
+
+.b9_IncomePage {
+    text-align: right!important;
+}
+.sizeDes_IncomePage {
+    max-width: 100px;
+}
