@@ -32,7 +32,8 @@
     "react-minimal-pie-chart": "^6.0.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "recharts": "^1.8.5"
+    "recharts": "^1.8.5",
+    "viser-react": "^2.4.8"
   },
   "scripts": {
     "start": "react-scripts start",

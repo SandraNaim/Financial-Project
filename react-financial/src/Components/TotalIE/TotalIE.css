@@ -6,9 +6,9 @@
 }
 .dashboard_total{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 10px;
+    padding: 2px;
     text-align: center;
-    width: 60%;
+    width: 100%;
     margin-top: 10%;
     opacity: 0.8;
 }
@@ -16,19 +16,19 @@
   color: darkblue;
 }
 .dashboard_total p{
-  font-size: 30px;
+  font-size: 25px;
 }
 .dashboard_total:hover{
   scale: 1.07;
   opacity: 1;
 }
 .datebutton{
-  background-color:"lightblue";
-  border-radius:"40px";
-  height:"60px";
-  width:"300px";
+  background-color:lightblue;
+  border-radius:40px;
+  height:60px;
+  width:300px;
   text-align:center;
-} 
+} /* 
 .dashboard-circle1{
     height: 200px ;
     width: 200px ;
@@ -52,30 +52,31 @@
   left:155px;
   top: 114px;
   z-index: 10;
-}
+} */
 .dashboard-money{
   position:absolute;
-  bottom:130px;
+  bottom:210px;
   left:190px;
   font-size:40px;
   z-index: 10;
 }
 
 .Tips-style{
-  font-family: Aclonica; 
+  font-family: Aclonica;
+  font-size: 11px; 
 }
 
 .tips-part{
   text-align:center;
 }
 
-.tips-part h4 { 
+.tips-part h6 { 
   display: flex; 
   flex-direction: row; 
 } 
 
-.tips-part h4:before, 
-.tips-part h4:after { 
+.tips-part h6:before, 
+.tips-part h6:after { 
   content: ""; 
   flex: 1 1; 
   border-bottom: 2px solid #000; 
@@ -88,9 +89,51 @@ blockquote p:before {
   margin-right: 10px;
 }
  .tips-part2{
-  color: darkmagenta;
+  color: darkslateblue;
   margin: 0;
-  font-size: large;
-
+  font-size: 12px;
 } 
+.dashboard-date{
+  width:200px;
+  border: 1px solid #8a4419;
+  border-style: inset;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  margin-left: 60px;
+  margin-top: -35px;
+}
+
+
+.dashboard-circle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: powderblue;
+  color: #333;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  display: block;
+  padding: 5px;
+  width: 70%;
+  height: 70%;
+  border: 1px solid black;
+  margin-top: auto;
+  margin-bottom: 15px;
+  margin-left: 50px;
+}
+
+.dashboard-circle:before {
+  content: '';
+  display: inline-block;
+  height: 30%;
+  vertical-align: middle;
+  margin-right: -2%; 
+  transition: all 1s ease-out;
+}
+.dashboard-circle h4{
+ color: darkblue;
+}
+
 

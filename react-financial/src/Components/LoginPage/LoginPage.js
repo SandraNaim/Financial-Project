@@ -1,5 +1,7 @@
 import React from 'react';
 import './LoginPage.css';
+import {Link} from 'react-router-dom';
+
 
 
 function LoginPage() {
@@ -34,7 +36,7 @@ function LoginPage() {
                         </div> 
                         <p class="text-center"><a href="#" className="btn text-primary">Forgot password?</a></p>
                         <p class="text-center">Do you wish to register for a <br/>
-                        <a href="#" className="btn text-primary">New Account</a></p>
+                        <Link to="/register" className="btn text-primary">New Account</Link></p>
                     </form>
                 </div>
             </div>

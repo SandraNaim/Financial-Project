@@ -1,7 +1,8 @@
 import React from 'react';
-import './Navbar.css';
+import './Landing_Navbar.css';
+import { BrowserRouter, Link} from 'react-router-dom';
 
-function Navbar() {
+function Landing_Navbar() {
     return (
        
  
@@ -12,11 +13,16 @@ function Navbar() {
             <i className="fa fa-money"  aria-hidden="true"></i>
 
             <div className="name_Navbar"><p>H E R O</p></div>
+            <BrowserRouter>
+            
            <nav  className="nav_Navbar">
                <li></li>
-            <li><a className="link_Navbar" style={{color:"white"}} href="#">Log-In </a></li>
-            <li><a className="link_Navbar" style={{color:"white"}} href="#">Register</a></li>
+            <li className="link_Navbar" style={{color:"white"}}><Link to="/login">Log-In </Link> </li> 
+            <li className="link_Navbar" style={{color:"white"}}><Link to="/register">Register</Link></li>
             </nav> 
+
+            </BrowserRouter>            
+
         </ul>
        
         </header>
@@ -25,4 +31,4 @@ function Navbar() {
     )
 }
 
-export default Navbar;
+export default Landing_Navbar;
