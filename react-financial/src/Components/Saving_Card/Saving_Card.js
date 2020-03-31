@@ -19,7 +19,7 @@ class Saving_Card extends React.Component {
                     <div className="col-1"></div>
                     <div className="col-sm-10 ">
                         <div className="card mt-20">
-                            <h5 className="card-header text-center " style={{ backgroundColor: 'yellow', color: 'white' }}>Saving Card</h5>
+                            <h5 className="card-header text-center " style={{ backgroundColor: 'yellow', color: 'white' }}>Saving Goals</h5>
                             <div className="card-body">
                                 <table className="table">
                                     <thead className="" style={{ backgroundColor: '', border: '2px solid #dee2e6' }}>
@@ -157,7 +157,7 @@ class Saving_Card extends React.Component {
                                 </table>
 
                                 <div className="form-group">
-                                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD SAVING</button>
+                                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD SAVING GOAL</button>
                                 </div>
 
                             </div>

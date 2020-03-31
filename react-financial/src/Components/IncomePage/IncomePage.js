@@ -1,18 +1,230 @@
 import React from "react";
-/* import "./Income_Card.css";
- */import { DatePicker } from 'antd';
+import { DatePicker } from 'antd';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+
+import "./IncomePage.css";
 
 
 class IncomePage extends React.Component {
-  onChange = (value, dateString) => {
-    console.log('Selected Time: ', value);
-    console.log('Formatted Selected Time: ', dateString);
+
+  
+
+  renderAddMode = (data, index) => {
+    return (
+      <>
+        <tr className="first">
+          <th scope="row">
+            <input type="text" name="title" defaultValue={data.title} onChange={event => this.props.handleInputChange(event, index)}  className="form-control" placeholder="Title" aria-describedby="emailHelp" />
+          </th>
+          <td>
+            <ToggleButtonGroup type="radio" name="type" defaultValue={1}>
+
+              <ToggleButton value="recurring">Recurring</ToggleButton>
+              <ToggleButton value="fixed">Fixed</ToggleButton>
+            </ToggleButtonGroup>
+          </td>
+          <td><DatePicker showTime  onOk={this.props.onOk} /></td>
+          <td>
+            <div className="form-group">
+
+              <select onChange={event => this.props.handleInputChange(event, index)} className="form-control" name="caregory" id="exampleFormControlSelect1">
+                <option value="housing">Housing</option>
+                <option value="food">Food</option>
+                <option value="car">Car</option>
+                <option value="entertainment">Entertainmnet</option>
+                <option value="taxes">Taxes</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div className="form-group">
+
+              <select onChange={event => this.props.handleInputChange(event, index)} name="currency" className="form-control" id="exampleFormControlSelect1">
+                <option value="$">$</option>
+                <option value="aed">AED</option>
+                <option value="l.l">L.L</option>
+                <option value="yen">Yen</option>
+                <option value="shekels">shekels</option>
+              </select>
+            </div>
+          </td>
+          <td><input onChange={event => this.props.handleInputChange(event, index)} type="text" name="amount" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
+
+
+        </tr>
+        <tr className={'second'}>
+          <td>
+            <div className="form-group">
+
+              <textarea onChange={event => this.props.handleInputChange(event, index)} name="description" className="form-control" placeholder="Description" ></textarea>
+            </div>
+          </td>
+          <td>
+            <div className="form-group">
+              <input onChange={event => this.props.handleInputChange(event, index)} name="interval" type="number" className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' />
+            </div>
+          </td>
+          <td>
+            <DatePicker showTime onChange={this.onChange} onOk={this.props.onOk} />
+            <p>(only fill if recurring)</p>
+          </td>
+          <td></td>
+          <td>
+
+          </td>
+          <td>
+            <button onClick={() => {
+              this.props.handleSubmitNewItem(index)
+            }}>Add</button>
+          </td>
+        </tr>
+
+      </>
+    )
   }
-  onOk = (value) => {
-    console.log('onOk: ', value);
+
+  renderEditMode = (data, index) => {
+
+    return (
+      <>
+        <tr className="first">
+          <th scope="row">
+            <input type="title" className="form-control" placeholder="Title" aria-describedby="emailHelp" />
+          </th>
+          <td>
+            <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+
+              <ToggleButton value={2}>Recurring</ToggleButton>
+              <ToggleButton value={3}>Fixed</ToggleButton>
+            </ToggleButtonGroup>
+          </td>
+          <td><DatePicker showTime  onOk={this.props.onOk} /></td>
+          <td>
+            <div className="form-group">
+
+              <select className="form-control" id="exampleFormControlSelect1">
+                <option>Housing</option>
+                <option>Food</option>
+                <option>Car</option>
+                <option>Entertainmnet</option>
+                <option>Taxes</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div className="form-group">
+
+              <select className="form-control" id="exampleFormControlSelect1">
+                <option>$</option>
+                <option>AED</option>
+                <option>L.L</option>
+                <option>Yen</option>
+                <option>shekels</option>
+              </select>
+            </div>
+          </td>
+          <td><input type="title" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
+        </tr>
+        <tr className={'second'}>
+          <td>
+            <div className="form-group">
+
+              <textarea className="form-control" placeholder="Description" ></textarea>
+            </div>
+          </td>
+          <td>
+            <div className="form-group">
+              <input className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' />
+            </div>
+          </td>
+          <td>
+            <DatePicker showTime  onOk={this.props.onOk} />
+            <p>(only fill if recurring)</p>
+          </td>
+          <td></td>
+          <td>
+
+          </td>
+          <td>
+            <button onClick={() => {
+              this.props.handleUpdateItem(index)
+            }}>Update</button>
+          </td>
+        </tr>
+      </>
+    )
   }
-  render() {
+
+  renderViewMode = (data, index) => {
+    return (
+      <>
+        <tr className="first">
+          <th scope="row">
+            <input type="title" defaultValue={data.title} disabled="disabled" className="form-control" placeholder="Title" aria-describedby="emailHelp" />
+          </th>
+          <td>
+            <ToggleButtonGroup disabled="disabled" type="radio" name="options" defaultValue={1}>
+              <ToggleButton disabled="disabled" value={2}>Recurring</ToggleButton>
+              <ToggleButton disabled="disabled" value={3}>Fixed</ToggleButton>
+            </ToggleButtonGroup>
+          </td>
+          <td><DatePicker disabled="disabled"  onOk={this.props.onOk} /></td>
+          <td>
+            <div disabled="disabled" className="form-group">
+              <select disabled="disabled" className="form-control" id="exampleFormControlSelect1">
+                <option>Housing</option>
+                <option>Food</option>
+                <option>Car</option>
+                <option>Entertainmnet</option>
+                <option>Taxes</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div disabled="disabled" className="form-group">
+              <select disabled="disabled" className="form-control" id="exampleFormControlSelect1">
+                <option>$</option>
+                <option>AED</option>
+                <option>L.L</option>
+                <option>Yen</option>
+                <option>shekels</option>
+              </select>
+            </div>
+          </td>
+          <td><input disabled="disabled" type="title" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
+        </tr>
+        <tr className={'second'}>
+          <td>
+            <div className="form-group">
+
+              <textarea disabled="disabled" className="form-control" placeholder="Description" ></textarea>
+            </div>
+          </td>
+          <td>
+            <div className="form-group">
+              <input disabled="disabled" className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' />
+            </div>
+          </td>
+          <td>
+            <DatePicker disabled="disabled" showTime  onOk={this.props.onOk} />
+            <p>(only fill if recurring)</p>
+          </td>
+          <td></td>
+          <td>
+
+          </td>
+          <td>
+            <button onClick={() => {
+              this.props.handleSwitchToUpdate(index)
+            }}>Edit</button>
+          </td>
+        </tr>
+
+      </>
+    )
+  }
+
+   render() {
     return (
       <div className="container" >
         <div className="row">
@@ -33,265 +245,31 @@ class IncomePage extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="first">
-                      <th scope="row">
-                        <input type="title" className="form-control" placeholder="Title" aria-describedby="emailHelp" />
-                      </th>
-                      <td>
-                        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
 
-                          <ToggleButton value={2}>Recurring</ToggleButton>
-                          <ToggleButton value={3}>Fixed</ToggleButton>
-                        </ToggleButtonGroup>
-                      </td>
-                      <td><DatePicker showTime onChange={this.onChange} onOk={this.onOk} /></td>
-                      <td>
-                        <div className="form-group">
+                    {
+                      this.props.items.map((item, index) => {
 
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>Housing</option>
-                            <option>Food</option>
-                            <option>Car</option>
-                            <option>Entertainmnet</option>
-                            <option>Taxes</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>$</option>
-                            <option>AED</option>
-                            <option>L.L</option>
-                            <option>Yen</option>
-                            <option>shekels</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td><input type="title" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
-
-
-                    </tr>
-                    <tr className={'second'}>
-                      <td>
-                        <div className="form-group">
-
-                          <textarea className="form-control" placeholder="Description" ></textarea>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-                          <input className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' /> 
-                                              </div>
-                      </td>
-                      <td>
-                        <DatePicker showTime onChange={this.onChange} onOk={this.onOk} />
-                        <p>(only fill if recurring)</p>
-                      </td>
-                      <td></td>
-                      <td>
-
-                      </td>
-                    </tr>
-                    <tr className="first">
-                      <th scope="row">
-                        <input type="title" className="form-control" placeholder="Title" aria-describedby="emailHelp" />
-                      </th>
-                      <td>
-                        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-
-                          <ToggleButton value={2}>Recurring</ToggleButton>
-                          <ToggleButton value={3}>Fixed</ToggleButton>
-                        </ToggleButtonGroup>
-                      </td>
-                      <td><DatePicker showTime onChange={this.onChange} onOk={this.onOk} /></td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>Housing</option>
-                            <option>Food</option>
-                            <option>Car</option>
-                            <option>Entertainmnet</option>
-                            <option>Taxes</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>$</option>
-                            <option>AED</option>
-                            <option>L.L</option>
-                            <option>Yen</option>
-                            <option>shekels</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td><input type="title" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
-
-
-                    </tr>
-                    <tr className={'second'}>
-                      <td>
-                        <div className="form-group">
-
-                          <textarea className="form-control" placeholder="Description" ></textarea>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-                          <input className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' /> 
-                                              </div>
-                      </td>
-                      <td>
-                        <DatePicker showTime onChange={this.onChange} onOk={this.onOk} />
-                        <p>(only fill if recurring)</p>
-                      </td>
-                      <td></td>
-                      <td>
-
-                      </td>
-                    </tr>
-                    <tr className="first">
-                      <th scope="row">
-                        <input type="title" className="form-control" placeholder="Title" aria-describedby="emailHelp" />
-                      </th>
-                      <td>
-                        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-
-                          <ToggleButton value={2}>Recurring</ToggleButton>
-                          <ToggleButton value={3}>Fixed</ToggleButton>
-                        </ToggleButtonGroup>
-                      </td>
-                      <td><DatePicker showTime onChange={this.onChange} onOk={this.onOk} /></td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>Housing</option>
-                            <option>Food</option>
-                            <option>Car</option>
-                            <option>Entertainmnet</option>
-                            <option>Taxes</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>$</option>
-                            <option>AED</option>
-                            <option>L.L</option>
-                            <option>Yen</option>
-                            <option>shekels</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td><input type="title" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
-
-
-                    </tr>
-                    <tr className={'second'}>
-                      <td>
-                        <div className="form-group">
-
-                          <textarea className="form-control" placeholder="Description" ></textarea>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-                          <input className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' /> 
-                                              </div>
-                      </td>
-                      <td>
-                        <DatePicker showTime onChange={this.onChange} onOk={this.onOk} />
-                        <p>(only fill if recurring)</p>
-                      </td>
-                      <td></td>
-                      <td>
-
-                      </td>
-                    </tr>
-                    <tr className="first">
-                      <th scope="row">
-                        <input type="title" className="form-control" placeholder="Title" aria-describedby="emailHelp" />
-                      </th>
-                      <td>
-                        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-
-                          <ToggleButton value={2}>Recurring</ToggleButton>
-                          <ToggleButton value={3}>Fixed</ToggleButton>
-                        </ToggleButtonGroup>
-                      </td>
-                      <td><DatePicker showTime onChange={this.onChange} onOk={this.onOk} /></td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>Housing</option>
-                            <option>Food</option>
-                            <option>Car</option>
-                            <option>Entertainmnet</option>
-                            <option>Taxes</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-
-                          <select className="form-control" id="exampleFormControlSelect1">
-                            <option>$</option>
-                            <option>AED</option>
-                            <option>L.L</option>
-                            <option>Yen</option>
-                            <option>shekels</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td><input type="title" className="form-control" placeholder="Amount" aria-describedby="emailHelp" /></td>
-
-
-                    </tr>
-                    <tr className={'second'}>
-                      <td>
-                        <div className="form-group">
-
-                          <textarea className="form-control" placeholder="Description" ></textarea>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="form-group">
-                          <input className="form-control" type="number" style={{ maxWidth: '80px' }} min="0" defaultValue='0' /> 
-                                              </div>
-                      </td>
-                      <td>
-                        <DatePicker showTime onChange={this.onChange} onOk={this.onOk} />
-                        <p>(only fill if recurring)</p>
-                      </td>
-                      <td></td>
-                      <td>
-
-                      </td>
-                    </tr>
-
+                        if (item.mode === 'add') {
+                          return this.renderAddMode(item.data, index )
+                        } else if (item.mode === 'edit') {
+                          return this.renderEditMode(item.data, index)
+                        } else if (item.mode === 'view') {
+                          return this.renderViewMode(item.data , index);
+                        }
+                      })
+                    }
+                   
                   </tbody>
                 </table>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD Income</button>
+                  <button type="button" onClick={this.props.handleAddItem} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD Income</button>
                 </div>
 
               </div>
             </div>
           </div>
         </div>
-
-
-
       </div>
 
     )

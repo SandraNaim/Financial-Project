@@ -24,8 +24,12 @@ import TotalBar from './Components/Report/TotalBar';
 import IncomePage from './Components/IncomePage/IncomePage';
 import Pie2 from './Components/pie2/Pie2';
 import Category from './Components/Category/Category';
+import Transaction_income from './Pages/Transaction_income/Transaction_income'
+import Saving from './Pages/Saving/Saving';
+import ExpensesPage from './Components/ExpensesPage/ExpensesPage';
+import Transaction_expense from './Pages/Transaction_expense/Transaction_expense';
 
-ReactDOM.render(<Dashboard/>, document.getElementById('root'));  
+ReactDOM.render(<Transaction_income />, document.getElementById('root'));  
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
