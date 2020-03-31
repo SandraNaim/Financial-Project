@@ -24,12 +24,10 @@ import TotalBar from './Components/Report/TotalBar';
 import IncomePage from './Components/IncomePage/IncomePage';
 import Pie2 from './Components/pie2/Pie2';
 import Category from './Components/Category/Category';
-
 import Transaction_income from './Pages/Transaction_income/Transaction_income'
 import Saving from './Pages/Saving/Saving';
 import ExpensesPage from './Components/ExpensesPage/ExpensesPage';
 import Transaction_expense from './Pages/Transaction_expense/Transaction_expense';
-
 import CircleComponent from './Components/CircleComponent/CircleComponent';
 import NewToolbar from './Components/NewToolbar/NewToolbar';
 import Landing_Page from './Pages/Landing_Page/Landing_Page';

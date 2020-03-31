@@ -18,7 +18,7 @@ class Transaction_income extends React.Component {
         {
           mode: 'view',
           data: {
-            title: 'Hello there',
+            title: '',
             description: '',
             type: 'fixed',
             interval: 0,
@@ -112,7 +112,7 @@ class Transaction_income extends React.Component {
   handleValidation = (index) => {
 
     let errors = true
-    const income = this.state.items[index].data.income;
+    const income = this.state.items[index].data;
 
     if (income.type === 'fixed') {
       // On Fixed we validate the following: Title / category / amount / currency / start_date
@@ -147,6 +147,15 @@ class Transaction_income extends React.Component {
 
   onOk = (value) => {
     console.log('onOk: ', value);
+  }
+
+  handleCancelItem = (index) => {
+    const items = this.state.items;
+
+    items.splice(index, 1)
+    this.setState({
+      items: items
+    })
   }
 
   handleAddItem = () => {
@@ -190,6 +199,7 @@ class Transaction_income extends React.Component {
         }
       })
 
+      // backend add transaction with the create route
       this.setState({
         items: new_items
       })
@@ -199,23 +209,30 @@ class Transaction_income extends React.Component {
   }
 
   handleUpdateItem = (id) => {
-    // Add api call for later
-    const new_items = this.state.items.map((item, index) => {
 
-      if (index !== id) {
-        return item;
-      }
-      else {
-        return {
-          ...item,
-          mode: 'view'
+    const errors = this.handleValidation(id)
+
+    if (!errors) {
+      // Add api call for later
+      const new_items = this.state.items.map((item, index) => {
+
+        if (index !== id) {
+          return item;
         }
-      }
-    })
-
-    this.setState({
-      items: new_items
-    })
+        else {
+          return {
+            ...item,
+            mode: 'view'
+          }
+        }
+      })
+      // call the backend with the update route
+      this.setState({
+        items: new_items
+      })
+    } else {
+      alert('Please fix the errors')
+    }
   }
 
   handleSwitchToUpdate = (id) => {
@@ -249,7 +266,7 @@ class Transaction_income extends React.Component {
     return (
       <IncomePage items={this.state.items} handleAddItem={handleAddItem}
         onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
-        handleValidation={this.handleValidation}
+        handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
         handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
       />
     )

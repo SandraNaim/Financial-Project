@@ -173,6 +173,9 @@ class Income_Card extends React.Component {
     if (incomesWithErrors.length === 0) {
       // redirect to new page
       // search: how to redirect user programmaticaly with react-router-dom
+
+      // send data to backend fetch
+
     }
   }
 
