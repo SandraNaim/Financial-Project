@@ -4,7 +4,19 @@ import {Link} from 'react-router-dom';
 
 
 
-function LoginPage() {
+class LoginPage extends React.Component {
+
+ /* constructor(props){
+        super(props)
+    } */
+
+    onClick=(event)=>{
+        event.preventDefault();
+        this.props.history.push("/dashboard");
+
+    }
+
+    render(){
     return (
     <div className="row">
         <div className=" col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -12,7 +24,7 @@ function LoginPage() {
                 <div className="card-body shadow-lg">
                     <h3 className="card-title text-center">Login</h3>
 	                 <hr/>
-                    <form>
+                    <form onSubmit={this.onClick}>
                         <div className="form-group">
                             <h6>Email</h6>
                             <div className="input-group">
@@ -32,7 +44,7 @@ function LoginPage() {
                             </div>
                         </div> 
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary btn-block"> Login  </button>
+                            <button onClick="" type="submit" className="btn btn-primary btn-block"> Login  </button>
                         </div> 
                         <p class="text-center"><a href="#" className="btn text-primary">Forgot password?</a></p>
                         <p class="text-center">Do you wish to register for a <br/>
@@ -43,7 +55,7 @@ function LoginPage() {
         </div>
     </div> 
         
-    )
+    )}
 }
 
 export default LoginPage;
