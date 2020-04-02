@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ToolNavbar from './Components/ToolNavbar/ToolNavbar';
 import Dashboard from './Pages/Dashboard/Dashboard';
@@ -16,6 +16,7 @@ import Category from './Components/Category/Category';
 import ExpensesPage from './Components/ExpensesPage/ExpensesPage';
 import MySetting from './Pages/MySetting/MySetting';
 import Saving from './Pages/Saving/Saving';
+import About from './Pages/About/About';
 
 
 class App extends React.Component {
@@ -159,7 +160,7 @@ createCategory = async props => {
   render() {
     return (
       <>
-        <BrowserRouter>
+       
           <div className="container">
             {/* <ToolNavbar/> */}
             <div>
@@ -169,6 +170,7 @@ createCategory = async props => {
                   !this.state.loggedIn ? (
                     <>
                       <Route path="/" component={Landing_Page} exact />
+                      <Route path="/about" component={About} exact />
                       <Route path="/login" component={LoginPage} />
                       <Route path="/register" render={props => <RegisterPage {...props} logUserIn={this.logUserIn} />} />
                     </>
@@ -194,8 +196,6 @@ createCategory = async props => {
 
           </div>
 
-
-        </BrowserRouter>
       </>
     );
   }
