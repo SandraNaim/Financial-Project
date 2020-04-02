@@ -32,8 +32,10 @@ import CircleComponent from './Components/CircleComponent/CircleComponent';
 import NewToolbar from './Components/NewToolbar/NewToolbar';
 import Landing_Page from './Pages/Landing_Page/Landing_Page';
 import Landing_Navbar from './Components/Landing_Navbar/Landing_Navbar';
+import About from './Pages/About/About';
 
-ReactDOM.render(<Transaction_income />, document.getElementById('root'));  
+
+ReactDOM.render(<About/>, document.getElementById('root'));  
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
