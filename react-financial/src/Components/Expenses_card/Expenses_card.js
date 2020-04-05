@@ -122,7 +122,7 @@ class Expenses_Card extends React.Component {
 
     event.preventDefault();
     if(this.state.items.length > 0){
-        this.props.history.push("/");
+        this.props.history.push("/portal");
     } else {
         alert('Please add at least 1 expense')
     }

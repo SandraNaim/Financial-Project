@@ -52,10 +52,10 @@ render() {
 
             <div className="row" >
                
-                <div className="col-md-8 report-switch">
-                    <div style={{fontSize:"20px"}}><i>Reports for traking your income and expenses</i></div>
+                <div className="col-md-8 report-switch" style={{marginLeft:"50px"}}>
+                    <div style={{fontSize:"20px", marginLeft:"-40px"}}><i>Reports for traking your income and expenses</i></div>
                   <h4> 
-                      <div><a>|</a> <a href=""><u>Weekly</u></a> <a>|</a> <a href=""><u>Monthly</u></a> <a>|</a> <a href=""><u>Yearly</u></a> <a>|</a> 
+                      <div style={{marginLeft:"-40px"}}><a>|</a> <a href=""><u>Weekly</u></a> <a>|</a> <a href=""><u>Monthly</u></a> <a>|</a> <a href=""><u>Yearly</u></a> <a>|</a> 
                       </div>
                                               
                     </h4>
@@ -65,7 +65,7 @@ render() {
                 
             </div>       
 
-            <div className="row" style={{justifyContent:"space-between", marginTop:"50px"}}>
+            <div className="row" style={{justifyContent:"space-between", marginTop:"50px", marginLeft:"50px"}}>
                 <div className="col-md-8"style={{textAlign:"center"}}>
                         
                         <button onClick={this.handleClick} type="button" class="report-button mr-2">

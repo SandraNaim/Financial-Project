@@ -9,42 +9,45 @@ class Setting_component extends React.Component {
         this.state={
             settings : [],
             settings2 : [],
-
-
+            modeUser: 'view',
+            modeCategory: 'view',
             name:'',
             password:'',
             id_currency:'',
+
+          /* items:[{
+            name:'',
+            password:'',
+            id_currency:'',
+          }
+          ] */
         }
             
     }
 
-
-    onClick=(event)=>{
+    onHandleChange = (event) => {
+      this.setState({
+        [event.target.name]:event.target.value
+      })
+    }
+    onUserUpdate=(event)=>{
         event.preventDefault();
-        const form=event.target;
-        let name=form.namee.value;
-        let password=form.passwordd.value;
-        let id_currency=form.id_currencyy.value;
-        this.updateSetting1({name, password, id_currency});
-        form.namee.value="";
-        form.passwordd.value="";
-        form.id_currencyy.value="";
-    
+        let name=this.state.namee;
+        let password=this.state.passwordd;
+        let id_currency=this.state.id_currencyy;
+        this.updateUser({name, password, id_currency});    
       } 
 
 
-    onClick2=(event)=>{
+    onCategoryUpdate=(event)=>{
         event.preventDefault();
-        const form=event.target;
-        let category=form.categoryy.value;
-        this.updateSetting2({category});
-        form.categoryy.value="";
-       
+        let category=this.state.categoryy;
+        this.updateCategory({category});       
       } 
 
 
 
-    updateSetting1 = async (props) => {
+    updateUser = async (props) => {
         try {
           if (!props && !props.name && !props.password && !props.id_currency && !props.id) {
             throw new Error(
@@ -85,7 +88,7 @@ class Setting_component extends React.Component {
 
 
 
-      updateSetting2 = async (props) => {
+      updateCategory= async (props) => {
         try {
           if (!props && !props.category && !props.id) {
             throw new Error(
@@ -124,13 +127,101 @@ class Setting_component extends React.Component {
       };
 
 
-    render(){
-    return (
 
-    <div className="container"style={{ marginBottom:"3%"}}>
-        <h3>General Setting</h3><hr/>
-        <br/> <br/>
-        <form onSubmit={this.onClick}>
+
+
+      handleSwitchUserToUpdate = () => {
+        // Add api call for later    
+              this.setState({
+                modeUser: 'edit'
+              })
+      } 
+      handleSwitchUserToView = ()=>{
+        this.setState({
+          modeUser: 'view'
+        })
+      }
+      handleSwitchCategoryToUpdate = () => {
+        // Add api call for later    
+        this.setState({
+        modeCategory: 'edit'
+        })
+      } 
+      handleSwitchCategoryToView = ()=>{
+        this.setState({
+          modeCategory: 'view'
+        })
+      }
+     
+
+
+
+
+
+
+      renderUserEditMode = () => {
+
+        return (
+          <form onSubmit={this.onUserUpdate}>
+            <div className="row" style={{ marginLeft:"3%"}}>
+                <div className="col-md-10 setting_one">
+                    <h6>Change your Name</h6>
+                    <div className="form-group" style={{ marginLeft:"15%",marginRight:"15%"}}>
+
+                        <input  name="namee" onChange={this.onHandleChange} style={{width:"300px"}} type="text" class="form-control" id="username" placeholder="Enter your name"/>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <br/>
+            <div className="row" style={{ marginLeft:"3%"}}>
+                <div className="col-md-10 setting_one">
+                    <h6>Change your Password</h6>
+                    <div className="form-group " style={{ marginLeft:"12%",marginRight:"15%"}}>
+
+                        <input name="passwordd" onChange={this.onHandleChange} style={{width:"300px"}} type="text" class="form-control" id="userpassword" placeholder="Enter your password"/>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div className="row " style={{marginTop:"3%", marginLeft:"3%"}}>
+                <div className="col-md-10 setting_one">
+                    <h6>Base Currency</h6>
+                    <div className="form-group " style={{ marginLeft:"20%",marginRight:"15%"}}>
+                    
+                        <div className="input-group"style={{width:"300px"}} >
+                                            
+                            <select class="form-control" name="id_currencyy" onChange={this.onHandleChange} id="currency">
+                                <option>$</option>
+                                <option>L.L</option>
+                                <option>AED</option>
+                                <option>Yen</option>
+                                <option>Shekels</option>
+                            </select>
+                        </div> 
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div className="row" >
+                <div style={{marginLeft:"31%"}}>
+                    <button type="button" onClick={() => {
+                      this.handleSwitchUserToView()}} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Cancel</button>
+                 <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Save</button>
+    
+                </div>
+            </div>
+
+        </form>
+        )
+      }
+
+      renderUserViewMode = () => {
+        return(
+          <form onSubmit={this.onClick}>
             <div className="row" style={{ marginLeft:"3%"}}>
                 <div className="col-md-10 setting_one">
                     <h6>Change your Name</h6>
@@ -176,16 +267,51 @@ class Setting_component extends React.Component {
 
             <div className="row" >
                 <div style={{marginLeft:"31%"}}>
-                    <button type="submit" onClick="" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Update</button>
+                    <button type="submit" onClick={() => {
+                      this.handleSwitchUserToUpdate()}} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Update</button>
                 </div>
             </div>
 
         </form>
-        <hr/>
+        )
+      }
 
 
-        <br/>
-        <form onSubmit={this.onClick2}>
+     /*  renderCategoryDeleteMode(){
+        return(
+        <h1>hi</h1>
+        )
+      } */
+      renderCategoryEditMode(){
+        return(
+        <form onSubmit={this.onCategoryUpdate}>
+            <div className="row" style={{ marginLeft:"3%"}}>
+                <div className="col-md-10 setting_one">
+                    <h6>Income/Expenses Category</h6>
+                    <div className="form-group " style={{ marginLeft:"8%"}}>
+
+                        <input name="categoryy" style={{width:"300px"}} type="text" class="form-control" id="category" placeholder="Enter your category"/>
+                    
+                    
+                    </div>
+                    
+                </div>
+            </div>
+            <div className="row">
+                    <div style={{ marginLeft:"31%"}}>
+                        <button type="submit" onClick={() => {
+                      this.handleSwitchCategoryToView()}} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Cancel</button>
+                        <button type="submit"  className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Save</button>
+                    </div>
+            </div>
+        </form>
+        )
+      }
+
+
+      renderCategoryViewMode(){
+        return(
+        <form >
             <div className="row" style={{ marginLeft:"3%"}}>
                 <div className="col-md-10 setting_one">
                     <h6>Income/Expenses Category</h6>
@@ -201,11 +327,43 @@ class Setting_component extends React.Component {
             <div className="row">
                     <div style={{ marginLeft:"31%"}}>
                         <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>+ ADD</button>
-                        <button type="submit" onClick2="" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Update</button>
-                        <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>- Delete</button>
+                        <button type="submit" onClick={() => {
+                      this.handleSwitchCategoryToUpdate()}} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)',height:"40px" }}>Update</button>
+                        
                     </div>
             </div>
         </form>
+        )
+      }
+
+
+    render(){
+    return (
+
+    <div className="container"style={{ marginBottom:"3%"}}>
+        <h3>General Setting</h3><hr/>
+        <br/> <br/>
+        
+        {this.state.modeUser == 'view'? this.renderUserViewMode():this.renderUserEditMode()}
+
+        <hr/>
+
+
+        <br/>
+{/*         {this.state(()=>{
+          if(this.state.modeCategory == 'view'){
+          return this.renderCategoryViewMode()
+          } else if (this.state.modeCategory == 'edit'){
+            return this.renderCategoryEditMode()
+          } else {
+            return renderCategoryDeleteMode()
+          }
+        }
+        )
+      } */}
+          {this.state.modeCategory == 'view'? this.renderCategoryViewMode():this.renderCategoryEditMode()}
+ 
+        
             <hr/>
             <br/>
             

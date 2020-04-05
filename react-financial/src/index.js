@@ -38,8 +38,7 @@ import About from './Pages/About/About';
 import Setting_component from './Components/Setting_component/Setting_component';
 
 
-ReactDOM.render(<BrowserRouter><App/></BrowserRouter>
-, document.getElementById('root'));  
+ReactDOM.render(<BrowserRouter><Dashboard/></BrowserRouter>, document.getElementById('root'));  
 
 
 

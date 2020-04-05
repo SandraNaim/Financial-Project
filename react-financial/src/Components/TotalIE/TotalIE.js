@@ -26,16 +26,16 @@ class TotalIE extends React.Component {
                     <br/><br/>
                     <div className="row" style={{justifyContent:"space-between"}}>
                         <div className=" col-md-8 align-self-center" >
-                            <div className="card card-signin" style={{position:"relative",height:"460px", marginBottom:"10px"}} >
+                            <div className="card card-signin" style={{position:"relative",height:"460px", marginBottom:"10px", marginLeft:"60px"}} >
                                 <div className="card-body shadow-lg">
-                                    <h3 className="card-title text-center">Current Status</h3>
+                                    <h3 className="card-title text-center">Current Month</h3>
                                     <hr />
                                     <div className="row">
                                         <div className="col-md-6 mx-auto" >
                                                 <CircleComponent realValue='75%' titleCircle='income' restnb='25' bothnb='75, 25'/>
                                                 <br/>
                                             <div>
-                                                <span style={{display: "inline-block", marginBottom:"500px"}}>
+                                                <span style={{display: "inline-block", marginBottom:"500px", marginLeft:"-10px"}}>
                                                     <input type="date" className="form-control dashboard-date" aria-describedby="emailHelp" />
                                                 </span>
                                             </div>

@@ -27,7 +27,8 @@ class App extends React.Component {
     this.state = {
       users: [],
       categories: [],
-      loggedIn: false
+      loggedIn: false,
+      
     }
   }
 
@@ -135,10 +136,10 @@ createCategory = async props => {
       }, 500)
     } */
   }
-  logUserIn = () => {
+  logUserIn = (token) => {
     // we will get the token from the fetch
 
-    localStorage.setItem('token', 'afakeone');
+    localStorage.setItem('token', token);
 
     this.setState({
       loggedIn: true
@@ -165,7 +166,6 @@ createCategory = async props => {
             {/* <ToolNavbar/> */}
             <div>
               <Switch>
-
                 {
                   !this.state.loggedIn ? (
                     <>
@@ -180,7 +180,7 @@ createCategory = async props => {
                         <Route path="/category" component={Category} />
                         <Route path="/income_card" component={Income_Card} />
                         <Route path="/expenses_card" component={Expenses_card} />
-                        <Route path="/" render={props => <ToolNavbar {...props} logUserOut={this.logUserOut}/>} />
+                        <Route path="/portal" render={props => <ToolNavbar {...props} logUserOut={this.logUserOut}/>} />
 
 
 

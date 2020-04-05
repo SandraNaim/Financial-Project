@@ -11,6 +11,7 @@ import Transaction_income from '../../Pages/Transaction_income/Transaction_incom
 import Transaction_expense from '../../Pages/Transaction_expense/Transaction_expense';
 import Saving from '../../Pages/Saving/Saving';
 import MySetting from '../../Pages/MySetting/MySetting';
+import About from '../../Pages/About/About';
 
 
 
@@ -29,8 +30,8 @@ function ToolNavbar(props) {
                     }}
                 >
                     <SideNav.Toggle />
-                    <SideNav.Nav defaultSelected="dashboard">
-                        <NavItem eventKey="dashboard">
+                    <SideNav.Nav defaultSelected="portal/dashboard">
+                        <NavItem eventKey="portal/dashboard">
                             <NavIcon>
                                 <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
@@ -106,7 +107,7 @@ function ToolNavbar(props) {
                             }
                         }>
                             <NavIcon>
-                                <i className="fa fa-pencil fa-fw" style={{ fontSize: '1.75em' }} />
+                                <i className="fa fa-sign-out fa-fw" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
                             <NavText >
                                 Log Out 
@@ -115,11 +116,14 @@ function ToolNavbar(props) {
                     </SideNav.Nav>
                 </SideNav>
                 <main>
-                    <Route path="/dashboard" exact component={props => <Dashboard />} />
-                    <Route path="/saving" component={props => <Saving />} />
-                    <Route path="/transactions/income" component={props => <Transaction_income />} />
-                    <Route path="/transactions/expenses" component={props => <Transaction_expense />} />
-                    <Route path="/setting" component={props => <MySetting />} />
+                    <Route path="/portal/dashboard" exact component={props => <Dashboard />} />
+                    <Route path="/portal/saving" component={props => <Saving />} />
+                    <Route path="/portal/transactions/income" component={props => <Transaction_income />} />
+                    <Route path="/portal/transactions/expenses" component={props => <Transaction_expense />} />
+                    <Route path="/portal/setting" component={props => <MySetting />} />
+                    <Route path="/portal/about" component={props => <About/>} />
+                    {/* <Route path="/portal/help" component={props => <Help/>} /> */}
+
 
                 </main>
             </React.Fragment>

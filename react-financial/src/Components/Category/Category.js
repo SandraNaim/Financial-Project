@@ -38,8 +38,10 @@ class Category extends React.Component {
 
         const form = event.target;
         let name = this.state.catAdd.namee;
+        debugger;
         //  let users_id=form.users_idd.value;
         this.createCategory({ name });
+        debugger;
         this.setState({
             catAdd: {
                 ...this.state.catAdd,
@@ -82,13 +84,14 @@ class Category extends React.Component {
                 );
             }
             const { name } = props;
+            const token = localStorage.getItem('token')
             const response = await fetch(
-                `http://localhost:8000/api/categories/create?name=${name}`
+                `http://localhost:8000/api/categories/create?name=${name}&token=${token}`
             );
             const json = await response.json();
             if (json.success) {
                 // we reproduce the user that was created in the database, locally
-                const categoryY = json.result;
+                const categoryY = json.data;
                 const categories = [...this.state.categories, categoryY];
                 this.setState({ categories, error: "" });
             } else {
@@ -119,7 +122,7 @@ class Category extends React.Component {
                                             <h6>Incomes/Expenses Category</h6>
                                             <div className="input-group" style={{ display: "flex", flexDirection: "column" }}>
 
-                                                <input name="" className="form-control" placeholder="Category 1" name="namee" type="text" required
+                                                <input  className="form-control" placeholder="Category 1" name="namee" type="text" required
                                                     onChange={this.onSubmitHandle}
                                                     value={this.state.catAdd.namee} />
                                                 {/*     <input name="" className="form-control" placeholder="Category 2" name="namee" type="text" required />
@@ -137,7 +140,7 @@ class Category extends React.Component {
 
                                             </div>
                                             <br />
-                                            <button type="submit" onClick="" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD Category</button>
+                                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD Category</button>
 
                                         </div>
                                     </div>
