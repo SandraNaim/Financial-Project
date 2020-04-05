@@ -36,9 +36,11 @@ import Landing_Page from './Pages/Landing_Page/Landing_Page';
 import Landing_Navbar from './Components/Landing_Navbar/Landing_Navbar';
 import About from './Pages/About/About';
 import Setting_component from './Components/Setting_component/Setting_component';
+import Help from './Pages/Help/Help';
 
 
 ReactDOM.render(<BrowserRouter><Dashboard/></BrowserRouter>, document.getElementById('root'));  
+
 
 
 

@@ -115,53 +115,7 @@ margin-top: 20px;
     }
 }
 
-.btn-color-background_about{
-    -moz-user-select: none;
-    background-image: -webkit-linear-gradient( 145deg,#faa61f 0%,#faa61f 0%,#faa61f 0%
-    , #ed1847 100%);
-    border: 1px solid #bfa67a;
-    border-radius: 2px;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 1.42857;
-    margin-bottom: 0;
-    padding: 12px 48px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: all 0.5s ease 0s;
-    vertical-align: middle;
-   
 
-}
-
-.btn-color-background_about:hover{
-    text-decoration: none;
-    color:grey;
-    background: transparent;
-
-}
-
-.margin2_about{
-    margin-left: 10%;
-}
-
-.cardy_help {
- border-radius: 25px;
- border-color: #41404094;
-}
-
-
-.card-img-top {
-    border-radius: 25px;
-}
-
-.hr_help {
-    color: black;
-    border-color: black;
-}
-
-.color_help {
-    background-color:palegoldenrod;
+.imgsize_landingpage {
+    max-height: 400px;
 }

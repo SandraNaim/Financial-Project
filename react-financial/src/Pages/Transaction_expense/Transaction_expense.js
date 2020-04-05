@@ -1,5 +1,5 @@
 import React from "react";
-import IncomePage from '../../Components/IncomePage/IncomePage';
+import ExpensesPage from '../../Components/ExpensesPage/ExpensesPage';
 import { DatePicker } from 'antd';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
@@ -264,7 +264,7 @@ class Transaction_expense extends React.Component {
     } = this;
 
     return (
-      <IncomePage items={this.state.items} handleAddItem={handleAddItem}
+      <ExpensesPage items={this.state.items} handleAddItem={handleAddItem}
         onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
         handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
         handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
