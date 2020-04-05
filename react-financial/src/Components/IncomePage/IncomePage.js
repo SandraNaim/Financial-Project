@@ -241,12 +241,11 @@ class IncomePage extends React.Component {
   render() {
     return (
 
-      <div className="fluid-container" className="wide_IncomePage" >
+      <div className="fluid-container" className="wide_IncomePage" style={{margin:"5px"}}>
         <div className="row">
 
 
 
-          <div className="col-1"></div>
           <div className="col-sm-10 " >
             <div className="card mt-20">
               <h5 className="card-header text-center " style={{ backgroundColor: 'Green', color: 'white' }}>Income Card</h5>

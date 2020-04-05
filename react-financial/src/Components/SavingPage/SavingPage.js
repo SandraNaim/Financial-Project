@@ -14,7 +14,7 @@ class SavingPage extends React.Component {
     render() {
 
         return (
-            <div className="container" >
+            <div className="container" style={{marginBottom:"5px"}}>
                 <div className="row">
                     <div className="col-1"></div>
                     <div className="col-sm-10 ">

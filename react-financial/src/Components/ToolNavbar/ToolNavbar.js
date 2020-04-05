@@ -12,6 +12,7 @@ import Transaction_expense from '../../Pages/Transaction_expense/Transaction_exp
 import Saving from '../../Pages/Saving/Saving';
 import MySetting from '../../Pages/MySetting/MySetting';
 import About from '../../Pages/About/About';
+import Help from '../../Pages/Help/Help';
 
 
 
@@ -39,7 +40,7 @@ function ToolNavbar(props) {
                                 Dashboard
             </NavText>
                         </NavItem>
-                        <NavItem eventKey="saving">
+                        <NavItem eventKey="portal/saving">
                             <NavIcon>
                                 <i className="fa fa-fw fa-save" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
@@ -54,12 +55,12 @@ function ToolNavbar(props) {
                             <NavText>
                                 Transaction
             </NavText>
-                            <NavItem eventKey="transactions/income">
+                            <NavItem eventKey="portal/transactions/income">
                                 <NavText>
                                     Incomes
                 </NavText>
                             </NavItem>
-                            <NavItem eventKey="transactions/expenses">
+                            <NavItem eventKey="portal/transactions/expenses">
                                 <NavText>
                                     Expenses
                 </NavText>
@@ -74,7 +75,7 @@ function ToolNavbar(props) {
             </NavText>
         </NavItem> */}
 
-                        <NavItem eventKey="setting" style={{ marginTop: "150px" }}>
+                        <NavItem eventKey="portal/setting" style={{ marginTop: "150px" }}>
                             <NavIcon>
                                 <i className="fa fa-cog fa-fw" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
@@ -82,7 +83,7 @@ function ToolNavbar(props) {
                                 Setting
             </NavText>
                         </NavItem>
-                        <NavItem eventKey="help">
+                        <NavItem eventKey="portal/help">
                             <NavIcon>
                                 <i className="fa fa-book fa-fw" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
@@ -90,7 +91,7 @@ function ToolNavbar(props) {
                                 Help
             </NavText>
                         </NavItem>
-                        <NavItem eventKey="about">
+                        <NavItem eventKey="portal/about">
                             <NavIcon>
                                 <i className="fa fa-pencil fa-fw" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
@@ -122,7 +123,7 @@ function ToolNavbar(props) {
                     <Route path="/portal/transactions/expenses" component={props => <Transaction_expense />} />
                     <Route path="/portal/setting" component={props => <MySetting />} />
                     <Route path="/portal/about" component={props => <About/>} />
-                    {/* <Route path="/portal/help" component={props => <Help/>} /> */}
+                    <Route path="/portal/help" component={props => <Help />} />
 
 
                 </main>
