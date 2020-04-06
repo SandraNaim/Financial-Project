@@ -15,6 +15,7 @@ class RegisterPage extends React.Component {
             last_name: '',
             email: '',
             password: '',
+            confirmPassword: '',
             currency_id: '',
         }
     }
@@ -39,17 +40,21 @@ class RegisterPage extends React.Component {
 
         let email = form.emaill.value;
         let password = form.passwordd.value;
+        let confirmPassword = form.confirmPasswordd.value;
         let currency_id = form.id_currencyy.value;
         // check if password and confirm password are the same
-
+        if (password !== confirmPassword) {
+            alert("Passwords don't match");
+        } else {
         // Run the below if passwords are equals
-        this.createUser({ first_name, last_name, email, password, currency_id });
-        form.first_namee.value = "";
-        form.last_namee.value = "";
-        form.emaill.value = "";
-        form.passwordd.value = "";
-        form.id_currencyy.value = "";
-
+            this.createUser({ first_name, last_name, email, password, currency_id });
+            form.first_namee.value = "";
+            form.last_namee.value = "";
+            form.emaill.value = "";
+            form.passwordd.value = "";
+            form.confirmPasswordd.value = "";
+            form.id_currencyy.value = "";
+        }
         // show error if not equal
     }
 
@@ -191,7 +196,7 @@ class RegisterPage extends React.Component {
                                                 <div className="input-group-prepend">
                                                     <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
                                                 </div>
-                                                <input className="form-control" placeholder="*******" type="password" required />
+                                                <input className="form-control" name="confirmPasswordd" placeholder="*******" type="password" required />
                                             </div>
                                         </div>
                                     </div>

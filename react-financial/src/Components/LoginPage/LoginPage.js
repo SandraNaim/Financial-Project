@@ -12,7 +12,7 @@ class LoginPage extends React.Component {
 
     onClick=(event)=>{
         event.preventDefault();
-        this.props.history.push("/dashboard");
+        this.props.history.push("/portal/dashboard");
 
     }
 

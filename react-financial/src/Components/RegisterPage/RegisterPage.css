@@ -1,0 +1,6 @@
+/* input:required select:required{
+    box-shadow: none;
+} */
+input:focus{
+    outline:none;
+}
