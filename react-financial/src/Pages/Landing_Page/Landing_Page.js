@@ -1,7 +1,7 @@
 import React from 'react';
 import './Landing_Page.css';
 import Landing_Navbar from '../../Components/Landing_Navbar/Landing_Navbar';
-
+import Pic1 from '../../IMAGES/Pic1.svg';
 class Landing_Page extends React.Component {
 
     constructor(props) {
@@ -40,11 +40,11 @@ class Landing_Page extends React.Component {
                                             </div>
     </div>
                                         <div className="carousel-item imgsize_landingpage">
-                                            <img className="imgsize_landingpage" src="https://www.bmw-iraq.com/content/dam/bmw/common/all-models/4-series/gran-coupe/2017/images-and-videos/images/BMW-4-series-gran-coupe-images-and-videos-1920x1200-11.jpg.asset.1519121502322.jpg" className="d-block w-100" alt="..."/>
+                                            <img className="imgsize_landingpage" src="https://image.opencart.com/cache/5bf5a6a28a776-resize-710x380.jpg" className="d-block w-100" alt="..."/>
                                                
     </div>
                                             <div className="carousel-item imgsize_landingpage">
-                                                <img className="imgsize_landingpage"  src="https://globalexpatrecruiting.com/wp-content/uploads/2019/12/The-40-most-anticipated-luxury-hotel-openings-for-2020.jpg" className="d-block w-100" alt="..."/>
+                                                <img className="imgsize_landingpage"  src={Pic1} alt="..."/>
                                                   
     </div>
                                             </div>
