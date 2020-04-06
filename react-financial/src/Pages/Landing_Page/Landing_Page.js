@@ -45,7 +45,7 @@ class Landing_Page extends React.Component {
     </div>
                                             <div className="carousel-item imgsize_landingpage">
                                                 <img className="imgsize_landingpage"  src="https://globalexpatrecruiting.com/wp-content/uploads/2019/12/The-40-most-anticipated-luxury-hotel-openings-for-2020.jpg" className="d-block w-100" alt="..."/>
-
+                                                  
     </div>
                                             </div>
                                             <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
