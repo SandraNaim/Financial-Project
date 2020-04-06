@@ -11,6 +11,9 @@ class Income_Card extends React.Component {
 
 
     this.state = {
+      transactions: [],
+      currencies: [],
+      categories: [],
       show_result: false, // for testing purpose ( later on to be removed)
       items: [
         {
@@ -115,17 +118,19 @@ class Income_Card extends React.Component {
 
   handleContinue = (event) => {
     event.preventDefault();
-        if(this.state.items.length > 0){
-            this.props.history.push("/expenses_card");
-        } else {
-            alert('Please add at least 1 income')
-        }
+
+    /* * /
+    if (this.state.items.length === 0) {
+      this.props.history.push("/expenses_card");
+    } else {
+      alert('Please add at least 1 income')
+    }
+    /* */
 
 
-        
     const incomes = this.state.items;
-
-    const incomesWithErrors = incomes.filter(income => {
+    const validItems = [];
+    const incomesWithErrors = incomes.filter((income, index) => {
 
       // validate that the income row wasn't changed by the user
       if (income.title === '' && income.description === '' && income.interval === 0 && income.start_date === '' &&
@@ -136,47 +141,92 @@ class Income_Card extends React.Component {
 
 
       // We need to check the type if its recurring or fixed
-
+     
       if (income.type === 'fixed') {
         // On Fixed we validate the following: Title / category / amount / currency / start_date
 
-        if (income.title !== '' && income.category !== '' && income.amount > 0 && income.currency !== '' && income.start_date !== '') {
+        if (income.title !== '' && income.category !== '' && income.amount > 0 && income.currency !== '' && income.start_date != '') {
+          validItems.push(index)
           return false;
         }
       } else if (income.type === 'recurring') {
-        debugger;
+      
         // on Recurring we validate the following: Title / Category / amount / currency / start_date / interval
-        if (income.title !== '' && income.category !== '' && income.amount > 0 && income.currency !== '' && income.start_date !== ''  && income.interval > 0 ) {
-          return false;
+        if (income.title !== '' && income.category !== '' && income.amount > 0 && income.currency !== '' && income.start_date != '' && income.interval > 0) {
+          // We want to validate if the start date < end date / if the end date was specified
+          if (income.end_date !== '') {
+            if (income.start_date < income.end_date) {
+              validItems.push(index)
+              return false;
+            }
+          } else {
+            validItems.push(index)
+            return false;
+
+          }
+
         }
         // We want to validate if the user filled all the inputs
-
-        // We want to validate if the start date < end date / if the end date was specified
-        if(income.end_date !== ''){
-          if (income.start_date < income.end_date) {
-
-            return false;
-          }
-        }
-      
       }
-
       return true
       // end
 
     })
 
-    if(incomesWithErrors.length > 0){
+    if (incomesWithErrors.length > 0) {
+      debugger;
       alert('Please fill the correct criteria')
     }
 
     if (incomesWithErrors.length === 0) {
       // redirect to new page
       // search: how to redirect user programmaticaly with react-router-dom
-
+      // this.props.history.push("/expenses_card");
       // send data to backend fetch
 
+      this.state.items.map((item, index) => {
+        let title = item.title;
+        let description = item.description;
+        let type = item.type;
+        let interval = item.interval;
+        let amount = item.amount;
+        let category_id = item.category;
+        let currency_id = item.currency;
+        let start_date = item.start_date;
+        let end_date = item.end_date;
+
+        if(validItems.indexOf(index) > -1){
+          this.createIncome({ title, description, type, interval, amount, category_id, currency_id, start_date, end_date });
+        }
+
+
+        if (index === this.state.items.length -1) {
+         // this.props.history.push("/expenses_card");
+        }
+      })
+
+
     }
+  }
+
+  async componentDidMount() {
+
+    const response = await fetch('http://localhost:8000/api/currencies');
+    const json = await response.json();
+    if (json.status == 'success') {
+      this.setState({
+        currencies: json.data
+      })
+    }
+    const token = localStorage.getItem('token');
+    const response2 = await fetch(`http://localhost:8000/api/categories?token=${token}`);
+    const json2 = await response2.json();
+    if (json2.status == 'success') {
+      this.setState({
+        categories: json2.data
+      })
+    }
+    // this.setState({json, json2});
   }
 
   renderAddMode = (data, index) => {
@@ -201,11 +251,18 @@ class Income_Card extends React.Component {
             <div className="form-group">
 
               <select onChange={event => this.handleInputChange(event, index)} name="category" className="form-control" id="exampleFormControlSelect1">
-                <option value="housing" >Housing</option>
+                <option value=""> --- </option>
+                {
+                  this.state.categories.map(category => {
+                    return <option key={category.id} value={category.id}>{category.name}</option>
+                  })
+                }
+
+                {/* <option value="housing" >Housing</option>
                 <option value="food" > Food</option>
                 <option value="car" >Car</option>
                 <option value="entertainment">entertainment</option>
-                <option value="taxes">Taxes</option>
+                <option value="taxes">Taxes</option> */}
               </select>
             </div>
           </td>
@@ -213,11 +270,17 @@ class Income_Card extends React.Component {
             <div className="form-group">
 
               <select onChange={event => this.handleInputChange(event, index)} name="currency" className="form-control" id="exampleFormControlSelect1">
-                <option value="$">$</option>
+              <option  value=""> --- </option>
+                {
+                  this.state.currencies.map(currency => {
+                    return <option key={currency.id} value={currency.id}>{currency.code}</option>
+                  })
+                }
+                {/* <option value="$">$</option>
                 <option value="aed">AED</option>
                 <option value="l.l">L.L</option>
                 <option value="yen">Yen</option>
-                <option value="shekels">shekels</option>
+                <option value="shekels">shekels</option> */}
               </select>
             </div>
           </td>
@@ -251,10 +314,59 @@ class Income_Card extends React.Component {
 
           </td>
         </tr>
-
       </>
     )
   }
+
+  getIncome = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/transactions");
+      const result = await response.json();
+      if (result.success) {
+        this.setState({ transactions: result.result, error: "" });
+      } else {
+        this.setState({ error: result.message });
+      }
+    } catch (err) {
+      this.setState({ error: err });
+    }
+  };
+
+  createIncome = async props => {
+    try {
+     // TODO: The validation is not working correctly
+     /* if (!props || !(props.title) || !(props.description) || !(props.amount) || !(props.category_id) || !(props.start_date) || !(props.end_date) || !(props.interval) || !(props.type) || !(props.currency_id)) {
+        throw new Error(
+          `you need category title,description,amount,category_id,start_date,end_date,interval,type, and currency_id to create a Income list`
+        );
+      }
+      */
+     
+     // if (fixed0){
+    
+      const { title, description, amount, category_id, start_date, end_date, interval, type, currency_id } = props;
+      const token = localStorage.getItem('token');
+      console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
+      const response = await fetch(
+        `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
+          headers: {
+            'Accept': 'application/json',
+          }
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        // we reproduce the user that was created in the database, locally
+        const incomeY = json.data;
+        const transactions = [...this.state.transactions, incomeY];
+        this.setState({ transactions, error: "" });
+      } else {
+        this.setState({ error: json.message });
+      }
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
+  };
 
   render() {
     return (
@@ -271,7 +383,7 @@ class Income_Card extends React.Component {
                       <th scope="col">Title <br /> Description</th>
                       <th scope="col">Type<br />Interval (weeks) &nbsp;</th>
                       <th scope="col">Star Date<br /> End Date</th>
-                      <th scope="col">Categary<br /> &nbsp;</th>
+                      <th scope="col">Category<br /> &nbsp;</th>
                       <th scope="col">Currency<br /> &nbsp;</th>
                       <th scope="col">Amount<br /> &nbsp;</th>
                     </tr>

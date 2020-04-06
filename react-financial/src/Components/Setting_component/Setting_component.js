@@ -14,13 +14,7 @@ class Setting_component extends React.Component {
             name:'',
             password:'',
             id_currency:'',
-
-          /* items:[{
-            name:'',
-            password:'',
-            id_currency:'',
-          }
-          ] */
+        
         }
             
     }
