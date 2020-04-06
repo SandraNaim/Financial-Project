@@ -181,7 +181,7 @@ class Income_Card extends React.Component {
     if (incomesWithErrors.length === 0) {
       // redirect to new page
       // search: how to redirect user programmaticaly with react-router-dom
-      // this.props.history.push("/expenses_card");
+       this.props.history.push("/expenses_card");
       // send data to backend fetch
 
       this.state.items.map((item, index) => {
@@ -341,12 +341,12 @@ class Income_Card extends React.Component {
         );
       }
       */
-     
+
      // if (fixed0){
     
       const { title, description, amount, category_id, start_date, end_date, interval, type, currency_id } = props;
       const token = localStorage.getItem('token');
-      console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
+     // console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
       const response = await fetch(
         `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
           headers: {
