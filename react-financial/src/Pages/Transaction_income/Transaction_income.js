@@ -63,7 +63,7 @@ class Transaction_income extends React.Component {
           if(income.interval > 0){
             type= 'recurring';
           }
-          
+
           return {
             mode: 'view',
             data: {...income, category: income.category_id, currency: income.currency_id, type}
@@ -168,7 +168,7 @@ class Transaction_income extends React.Component {
     if (income.category=== ''){
       errors.push('Please fill the category');
     }
-    if(income.amount=== ''){
+    if(income.amount > 0){
       errors.push('Please fill the amount');
     }
     if (income.currency=== ''){
@@ -195,7 +195,7 @@ class Transaction_income extends React.Component {
     if (income.currency=== ''){
       errors.push('Please fill the currency');
     }
-    if(income.interval=== ''){
+    if(income.interval > 0){
       errors.push('Please fill the interval');
     }
     if (income.currency=== ''){

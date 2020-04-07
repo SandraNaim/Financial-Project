@@ -34,7 +34,7 @@ class IncomePage extends React.Component {
             </ToggleButtonGroup>
           </td>
           <td><DatePicker showTime onOk={date => {
-            this.onOk(date, index, 'start_date')
+            this.props.onOk(date, index, 'start_date')
           }} /></td>
           <td>
             <div className="form-group">
