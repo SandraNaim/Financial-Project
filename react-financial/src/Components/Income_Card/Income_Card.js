@@ -19,7 +19,7 @@ class Income_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'income',
           interval: 0,
           amount: '',
           category: '',
@@ -30,7 +30,7 @@ class Income_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'income',
           interval: 0,
           amount: '',
           category: '',
@@ -41,7 +41,7 @@ class Income_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'income',
           interval: 0,
           amount: '',
           category: '',
@@ -52,7 +52,7 @@ class Income_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'income',
           interval: 0,
           amount: '',
           category: '',
@@ -181,7 +181,7 @@ class Income_Card extends React.Component {
     if (incomesWithErrors.length === 0) {
       // redirect to new page
       // search: how to redirect user programmaticaly with react-router-dom
-       this.props.history.push("/expenses_card");
+      // this.props.history.push("/expenses_card");
       // send data to backend fetch
 
       this.state.items.map((item, index) => {
@@ -201,7 +201,7 @@ class Income_Card extends React.Component {
 
 
         if (index === this.state.items.length -1) {
-         // this.props.history.push("/expenses_card");
+          this.props.history.push("/expenses_card");
         }
       })
 
@@ -226,7 +226,6 @@ class Income_Card extends React.Component {
         categories: json2.data
       })
     }
-    // this.setState({json, json2});
   }
 
   renderAddMode = (data, index) => {
@@ -348,7 +347,7 @@ class Income_Card extends React.Component {
       const token = localStorage.getItem('token');
      // console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
       const response = await fetch(
-        `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
+        `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=income&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
           headers: {
             'Accept': 'application/json',
           }

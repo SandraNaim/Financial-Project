@@ -14,54 +14,97 @@ class Transaction_income extends React.Component {
 
 
     this.state = {
-      items: [
-        {
-          mode: 'view',
-          data: {
-            title: '',
-            description: '',
-            type: 'fixed',
-            interval: 0,
-            amount: '',
-            category: '',
-            currency: '',
-            start_date: '',
-            end_date: ''
-          }
-        },
-        {
-          mode: 'view',
-          data: {
-            title: '',
-            description: '',
-            type: 'fixed',
-            interval: 0,
-            amount: '',
-            category: '',
-            currency: '',
-            start_date: '',
-            end_date: ''
-          }
-        },
-        {
-          mode: 'view',
-          data: {
-            title: '',
-            description: '',
-            type: 'fixed',
-            interval: 0,
-            amount: '',
-            category: '',
-            currency: '',
-            start_date: '',
-            end_date: ''
-          }
-        }
-      ]
+      transactions: [],
+      currencies: [],
+      categories: [],
+      items: []
     }
   }
 
+  async componentDidMount() {
 
+    const response = await fetch('http://localhost:8000/api/currencies');
+    const json = await response.json();
+    if (json.status == 'success') {
+      this.setState({
+        currencies: json.data
+      })
+    }
+    const token = localStorage.getItem('token');
+    const response2 = await fetch(`http://localhost:8000/api/categories?token=${token}`);
+    const json2 = await response2.json();
+    if (json2.status == 'success') {
+      this.setState({
+        categories: json2.data
+      })
+    }
+    debugger;
+    this.getIncome()
+  }
+
+
+
+  getIncome = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`http://localhost:8000/api/transactions?token=${token}`);
+      const result = await response.json();
+      debugger;
+      if (result.success) {
+        const incomes = result.data.filter(transaction => {
+          if( transaction.type === 'income'){
+            return true;
+          }else {
+            return false;
+          }
+        })
+        const items = incomes.map(income => {
+          let type = 'fixed';
+          if(income.interval > 0){
+            type= 'recurring';
+          }
+          
+          return {
+            mode: 'view',
+            data: {...income, category: income.category_id, currency: income.currency_id, type}
+          }
+        })
+        this.setState({ items: items, error: "" });
+      } else {
+        this.setState({ error: result.message });
+      }
+    } catch (err) {
+      this.setState({ error: err });
+    }
+  };
+
+  createIncome = async props => {
+    try {
+     // if (fixed0){
+    
+      const { title, description, amount, category_id, start_date, end_date, interval, type, currency_id } = props;
+      const token = localStorage.getItem('token');
+     // console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
+      const response = await fetch(
+        `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=income&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
+          headers: {
+            'Accept': 'application/json',
+          }
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        // we reproduce the user that was created in the database, locally
+        const incomeY = json.data;
+        const transactions = [...this.state.transactions, incomeY];
+        this.setState({ transactions, error: "" });
+      } else {
+        this.setState({ error: json.message });
+      }
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
+  };
   onOk = (date, index, name) => {
     const newItems = this.state.items;
 
@@ -111,31 +154,63 @@ class Transaction_income extends React.Component {
 
   handleValidation = (index) => {
 
-    let errors = true
+    let errors = [];
     const income = this.state.items[index].data;
 
-    if (income.type === 'fixed') {
-      // On Fixed we validate the following: Title / category / amount / currency / start_date
+  // We need to check the type if its recurring or fixed
+     
+  if (income.type === 'fixed') {
+    // On Fixed we validate the following: Title / category / amount / currency / start_date
 
-      if (income.title !== '' && income.category !== '' && income.amount > 0 && income.currency !== '' && income.start_date !== '') {
-        errors = false;
-      }
-    } else if (income.type === 'recurring') {
-      // on Recurring we validate the following: Title / Category / amount / currency / start_date / interval
-      if (income.title !== '' && income.category !== '' && income.amount > 0 && income.currency !== '' && income.start_date !== '' && income.interval > 0) {
-        errors = false;
-      }
-      // We want to validate if the user filled all the inputs
-
-      // We want to validate if the start date < end date / if the end date was specified
-      if (income.end_date !== '') {
-        if (income.start_date < income.end_date) {
-
-          errors = false;
-        }
-      }
-
+    if(income.title=== ''){
+      errors.push('Please fill the title');
     }
+    if (income.category=== ''){
+      errors.push('Please fill the category');
+    }
+    if(income.amount=== ''){
+      errors.push('Please fill the amount');
+    }
+    if (income.currency=== ''){
+      errors.push('Please fill the currency');
+    }
+    if(income.start_date=== ''){
+      errors.push('Please fill the start_date');
+    }
+
+
+    
+  } else if (income.type === 'recurring') {
+  
+    // on Recurring we validate the following: Title / Category / amount / currency / start_date / interval
+    if(income.title=== ''){
+      errors.push('Please fill the title');
+    }
+    if (income.category=== ''){
+      errors.push('Please fill the category');
+    }
+    if(income.amount=== ''){
+      errors.push('Please fill the amount');
+    }
+    if (income.currency=== ''){
+      errors.push('Please fill the currency');
+    }
+    if(income.interval=== ''){
+      errors.push('Please fill the interval');
+    }
+    if (income.currency=== ''){
+      errors.push('Please fill the currency');
+    }
+    if(income.end_date!== ''){
+      if (income.start_date > income.end_date) {
+        errors.push('Please fill the end_date');
+      }
+     
+    }
+    
+
+    // We want to validate if the user filled all the inputs
+  }
     return errors;
   }
 
@@ -145,9 +220,28 @@ class Transaction_income extends React.Component {
     console.log('Formatted Selected Time: ', dateString);
   }
 
-  onOk = (value) => {
-    console.log('onOk: ', value);
+ 
+
+  onOk = (date, index, name) => {
+    const newItems = this.state.items;
+
+    newItems[index] = {
+      ...newItems[index], 
+        data: {
+          ...newItems[index].data,
+          [name] : date
+        }
+      }
+    
+
+    this.setState(
+      {
+        items: newItems
+      }
+    );
+
   }
+
 
   handleCancelItem = (index) => {
     const items = this.state.items;
@@ -211,8 +305,8 @@ class Transaction_income extends React.Component {
   handleUpdateItem = (id) => {
 
     const errors = this.handleValidation(id)
-
-    if (!errors) {
+debugger;
+    if (errors.length === 0) {
       // Add api call for later
       const new_items = this.state.items.map((item, index) => {
 
@@ -231,7 +325,7 @@ class Transaction_income extends React.Component {
         items: new_items
       })
     } else {
-      alert('Please fix the errors')
+      alert(errors.toString())
     }
   }
 
@@ -264,11 +358,14 @@ class Transaction_income extends React.Component {
     } = this;
 
     return (
-      <IncomePage items={this.state.items} handleAddItem={handleAddItem}
+     <>
+     {JSON.stringify(this.state.items)}
+      <IncomePage categories={this.state.categories} currencies={this.state.currencies} items={this.state.items} handleAddItem={handleAddItem}
         onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
         handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
         handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
       />
+     </>
     )
   }
 
