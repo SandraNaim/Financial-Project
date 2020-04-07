@@ -117,8 +117,41 @@ margin-top: 20px;
 
 
 .imgsize_landingpage {
-    max-height: 400px;
-    min-height: 400px;
-   
+    height: 400px;
+    min-width: 1200px;
+    
+}
+
+
+  .text_landing {
+      font-size: 45px !important;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+      color: black !important;
+      text-align: center !important;
+      justify-self: center;
+      margin-bottom: 90px;
+  }
+
+
+  .gold_landing{
+      color: gold;
+  }
+  
+  .red_landing{
+    color: red;
+}
+.orange_landing{
+    color: orangered !important;
+}
+.black_landing{
+    color: black;
+}
+.text1_landing {
+    font-size: 45px !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    color: black !important;
+    text-align: center !important;
+    justify-self: center;
+    margin-bottom: 100px;
 }
 

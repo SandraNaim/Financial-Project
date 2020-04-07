@@ -52,12 +52,15 @@ class About extends React.Component {
                                                 experiences well as supporting the growth
                                                 ambitions of its Corporate users.
                             </p>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;S&K, the worlds largest Financial APP and one of the world’s
+                                                            largest and safest institutions, offers an extensive
+                                                            range of tailor-made solutions, and services,
+                                                            to provide an euphoric experience. Through its strategic offerings,
+                                                            it looks to meet the saving needs of customers across the
+                                                            world via its market-leading Corporate and
+                                                            Investment Banking and Personal Banking franchises.
                                         <div className="hgt-2o"></div>
-                                        <div className="home-button"><br />
-                                            <a href="" className="btn-color-background btn-color-background_about">Read More</a>
-
-                                        </div>
-                                    </div>
+                                         </div>
 
                                 </div>
                                 <div className="col-sm-4  col-sm-offset-2 margin2_about">
