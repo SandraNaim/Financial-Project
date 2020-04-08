@@ -156,7 +156,7 @@ class Category extends React.Component {
 
                                         <div className="form-group text-center">
 
-                                            <button type="submit" onClick="" className="btn btn-primary">Continue</button>
+                                            <button type="submit" className="btn btn-primary">Continue</button>
 
                                         </div>
                                     </div>

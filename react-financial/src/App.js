@@ -26,23 +26,27 @@ class App extends React.Component {
 
     this.state = {
 
-      loggedIn: true,
-      
+      loggedIn: false,
+
     }
   }
 
 
   async componentDidMount() {
-
-
-
     // fake login after refresh
- /*    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token != null) {
-      setTimeout(() => {
-        this.logUserIn()
-      }, 500)
-    } */
+      try {
+        const response = await fetch(`http://localhost:8000/api/categories?token=${token}`);
+        const json = await response.json();
+        this.setState({
+          loggedIn: true
+        })
+      } catch (e) {
+        alert(e.message)
+        localStorage.removeItem('token')
+      }
+    }
   }
   logUserIn = (token) => {
     // we will get the token from the fetch
@@ -66,40 +70,38 @@ class App extends React.Component {
   render() {
     return (
       <>
-       
-          <div className="container">
-            {/* <ToolNavbar/> */}
-            <div>
-              <Switch>
-                {
-                  !this.state.loggedIn ? (
+
+        <div className="container">
+          {/* <ToolNavbar/> */}
+          <div>
+            <Switch>
+              {
+                !this.state.loggedIn ? (
+                  <>
+                    <Route path="/" component={Landing_Page} exact />
+                    <Route path="/about" component={About} exact />
+                    <Route path="/login" render={props => <LoginPage {...props} logUserIn={this.logUserIn} />} />
+                    <Route path="/register" render={props => <RegisterPage {...props} logUserIn={this.logUserIn} />} />
+                  </>
+                ) : (
                     <>
-                      <Route path="/" component={Landing_Page} exact />
-                      <Route path="/about" component={About} exact />
-                      <Route path="/login" component={LoginPage} />
-                      <Route path="/register" render={props => <RegisterPage {...props} logUserIn={this.logUserIn} />} />
+
+                      <Route path="/category" component={Category} />
+                      <Route path="/income_card" component={Income_Card} />
+                      <Route path="/expenses_card" component={Expenses_card} />
+                      <Route path="/portal" render={props => <ToolNavbar {...props} logUserOut={this.logUserOut} />} />
+
                     </>
-                  ) : (
-                      <>
+                  )
+              }
 
-                        <Route path="/category" component={Category} />
-                        <Route path="/income_card" component={Income_Card} />
-                        <Route path="/expenses_card" component={Expenses_card} />
-                        <Route path="/portal" render={props => <ToolNavbar {...props} logUserOut={this.logUserOut}/>} />
-
-
-
-                      </>
-                    )
-                }
-
-              </Switch>
-            </div>
-
-            {/* <Footer></Footer> */}
-
-
+            </Switch>
           </div>
+
+          {/* <Footer></Footer> */}
+
+
+        </div>
 
       </>
     );
