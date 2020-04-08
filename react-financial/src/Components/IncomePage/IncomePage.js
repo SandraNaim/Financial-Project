@@ -1,7 +1,7 @@
 import React from "react";
 import { DatePicker } from 'antd';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-
+import moment from 'moment';
 import "./IncomePage.css";
 
 
@@ -39,7 +39,7 @@ class IncomePage extends React.Component {
           <td>
             <div className="form-group">
 
-              <select onChange={event => this.props.handleInputChange(event, index)} className="form-control" name="caregory" id="exampleFormControlSelect1">
+              <select onChange={event => this.props.handleInputChange(event, index)} className="form-control" name="category" id="exampleFormControlSelect1">
                 <option value=""> --- </option>
               {
                   this.props.categories.map(category => {
@@ -113,7 +113,8 @@ class IncomePage extends React.Component {
   }
 
   renderEditMode = (data, index) => {
-
+    const start_date =  moment(data.start_date, 'ddd MMM DD YYYY kk:mm:ss ZZ 0300')
+    const end_date =  moment(data.end_date, 'ddd MMM DD YYYY kk:mm:ss ZZ 0300')
     return (
       <>
         <tr className="first">
@@ -121,13 +122,13 @@ class IncomePage extends React.Component {
             <input type="text" onChange={event =>  this.props.handleInputChange(event, index)} className="form-control" name="title" placeholder="Title" aria-describedby="emailHelp" />
           </th>
           <td>
-            <ToggleButtonGroup type="radio" name="options" value={this.props.items[index].type} onChange={values => this.props.handleTypeChange(values, index)} name="type" defaultValue={1}>
+            <ToggleButtonGroup type="radio" name="options" value={data.type} onChange={values => this.props.handleTypeChange(values, index)} name="type" defaultValue={1}>
 
               <ToggleButton value="recurring">Recurring</ToggleButton>
               <ToggleButton value="fixed">Fixed</ToggleButton>
             </ToggleButtonGroup>
           </td>
-          <td><DatePicker showTime onOk={date => {
+          <td><DatePicker showTime defaultValue={start_date} onOk={date => {
             this.props.onOk(date, index, 'start_date')
           }} /></td>
           <td>
@@ -180,7 +181,7 @@ class IncomePage extends React.Component {
             </div>
           </td>
           <td>
-            <DatePicker showTime onOk={date => {
+            <DatePicker showTime  defaultValue={data.end_date !== null ? end_date : null } onOk={date => {
             this.props.onOk(date, index, 'end_date')
           }} />
             <p>(only fill if recurring)</p>
@@ -200,6 +201,8 @@ class IncomePage extends React.Component {
   }
 
   renderViewMode = (data, index) => {
+    const start_date =  moment(data.start_date, 'ddd MMM DD YYYY kk:mm:ss ZZ 0300')
+    const end_date =  moment(data.end_date, 'ddd MMM DD YYYY kk:mm:ss ZZ 0300')
     return (
       <>
       
@@ -216,16 +219,16 @@ class IncomePage extends React.Component {
               
             </ToggleButtonGroup>
           </td>
-          <td><DatePicker disabled="disabled" showtime onOk={date => {
+          <td><DatePicker disabled="disabled" defaultValue={start_date} showtime onOk={date => {
             this.onOk(date, index, 'start_date')
           }} /></td>
           <td>
             <div disabled="disabled" className="form-group">
               <select disabled="disabled" className="form-control" id="exampleFormControlSelect1">
-                <option key={data.id} value={data.id}> {data.category} </option> 
+                <option  value=""> ---- </option> 
                  {
                   this.props.categories.map(category => {
-                    return <option key={category.id} selected={category.id === data.category} value={category.id}>{category.code}</option>
+                    return <option key={category.id} selected={category.id === parseInt(data.category)} value={category.id}>{category.name}</option>
                   })
                 }
 
@@ -242,7 +245,7 @@ class IncomePage extends React.Component {
               <select disabled="disabled"  className="form-control" id="exampleFormControlSelect1">
               {
                   this.props.currencies.map(currency => {
-                    return <option key={currency.id} selected={currency.id === data.currency} value={currency.id}>{currency.code}</option>
+                    return <option key={currency.id} selected={currency.id === parseInt( data.currency)} value={currency.id}>{currency.code}</option>
                   })
                 }
 
@@ -268,7 +271,7 @@ class IncomePage extends React.Component {
             </div>
           </td>
           <td>
-            <DatePicker disabled="disabled" showTime onOk={date => {
+            <DatePicker disabled="disabled" defaultValue={data.end_date !== null ? end_date : null }  showTime onOk={date => {
             this.onOk(date, index, 'end_date')
           }} />
             <p>(only fill if recurring)</p>

@@ -75,11 +75,12 @@ class App extends React.Component {
           {/* <ToolNavbar/> */}
           <div>
             <Switch>
+            <Route path="/" component={Landing_Page} exact />
+            <Route path="/about" component={About} exact />
+
               {
                 !this.state.loggedIn ? (
                   <>
-                    <Route path="/" component={Landing_Page} exact />
-                    <Route path="/about" component={About} exact />
                     <Route path="/login" render={props => <LoginPage {...props} logUserIn={this.logUserIn} />} />
                     <Route path="/register" render={props => <RegisterPage {...props} logUserIn={this.logUserIn} />} />
                   </>

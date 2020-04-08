@@ -52,21 +52,21 @@ class Transaction_income extends React.Component {
       debugger;
       if (result.success) {
         const incomes = result.data.filter(transaction => {
-          if( transaction.type === 'income'){
+          if (transaction.type === 'income') {
             return true;
-          }else {
+          } else {
             return false;
           }
         })
         const items = incomes.map(income => {
           let type = 'fixed';
-          if(income.interval > 0){
-            type= 'recurring';
+          if (income.interval > 0) {
+            type = 'recurring';
           }
 
           return {
             mode: 'view',
-            data: {...income, category: income.category_id, currency: income.currency_id, type}
+            data: { ...income, category: income.category_id, currency: income.currency_id, type }
           }
         })
         this.setState({ items: items, error: "" });
@@ -80,24 +80,45 @@ class Transaction_income extends React.Component {
 
   createIncome = async props => {
     try {
-     // if (fixed0){
-    
-      const { title, description, amount, category_id, start_date, end_date, interval, type, currency_id } = props;
+      // if (fixed0){
+
+      const { index, title, description, amount, category_id, start_date, end_date, interval, type, currency_id } = props;
       const token = localStorage.getItem('token');
-     // console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
+      // console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
       const response = await fetch(
         `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=income&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
-          headers: {
-            'Accept': 'application/json',
-          }
+        headers: {
+          'Accept': 'application/json',
         }
+      }
       );
       const json = await response.json();
       if (json.success) {
         // we reproduce the user that was created in the database, locally
         const incomeY = json.data;
-        const transactions = [...this.state.transactions, incomeY];
-        this.setState({ transactions, error: "" });
+        const new_items = this.state.items.map((item, currentIndex) => {
+
+          const income = incomeY;
+          if (index !== currentIndex) {
+            return item;
+          }
+          else {
+
+            let type = 'fixed';
+            if (income.interval > 0) {
+              type = 'recurring';
+            }
+
+            return {
+              mode: 'view',
+              data: { ...income, category: income.category_id, currency: income.currency_id, type }
+            }
+          }
+        })
+        // call the backend with the update route
+        this.setState({
+          items: new_items
+        })
       } else {
         this.setState({ error: json.message });
       }
@@ -157,60 +178,60 @@ class Transaction_income extends React.Component {
     let errors = [];
     const income = this.state.items[index].data;
 
-  // We need to check the type if its recurring or fixed
-     
-  if (income.type === 'fixed') {
-    // On Fixed we validate the following: Title / category / amount / currency / start_date
+    // We need to check the type if its recurring or fixed
 
-    if(income.title=== ''){
-      errors.push('Please fill the title');
-    }
-    if (income.category=== ''){
-      errors.push('Please fill the category');
-    }
-    if(income.amount > 0){
-      errors.push('Please fill the amount');
-    }
-    if (income.currency=== ''){
-      errors.push('Please fill the currency');
-    }
-    if(income.start_date=== ''){
-      errors.push('Please fill the start_date');
-    }
+    if (income.type === 'fixed') {
+      // On Fixed we validate the following: Title / category / amount / currency / start_date
 
-
-    
-  } else if (income.type === 'recurring') {
-  
-    // on Recurring we validate the following: Title / Category / amount / currency / start_date / interval
-    if(income.title=== ''){
-      errors.push('Please fill the title');
-    }
-    if (income.category=== ''){
-      errors.push('Please fill the category');
-    }
-    if(income.amount=== ''){
-      errors.push('Please fill the amount');
-    }
-    if (income.currency=== ''){
-      errors.push('Please fill the currency');
-    }
-    if(income.interval > 0){
-      errors.push('Please fill the interval');
-    }
-    if (income.currency=== ''){
-      errors.push('Please fill the currency');
-    }
-    if(income.end_date!== ''){
-      if (income.start_date > income.end_date) {
-        errors.push('Please fill the end_date');
+      if (income.title === '') {
+        errors.push('Please fill the title');
       }
-     
-    }
-    
+      if (income.category === '') {
+        errors.push('Please fill the category');
+      }
+      if (parseInt(income.amount) <= 0) {
+        errors.push('Please fill the amount');
+      }
+      if (income.currency === '') {
+        errors.push('Please fill the currency');
+      }
+      if (income.start_date === '') {
+        errors.push('Please fill the start_date');
+      }
 
-    // We want to validate if the user filled all the inputs
-  }
+
+
+    } else if (income.type === 'recurring') {
+
+      // on Recurring we validate the following: Title / Category / amount / currency / start_date / interval
+      if (income.title === '') {
+        errors.push('Please fill the title');
+      }
+      if (income.category === '') {
+        errors.push('Please fill the category');
+      }
+      if (income.amount <= 0) {
+        errors.push('Please fill the amount');
+      }
+      if (income.currency === '') {
+        errors.push('Please fill the currency');
+      }
+      if (income.interval <= 0) {
+        errors.push('Please fill the interval');
+      }
+      if (income.currency === '') {
+        errors.push('Please fill the currency');
+      }
+      if (income.end_date !== '') {
+        if (income.start_date > income.end_date) {
+          errors.push('Please fill the end_date');
+        }
+
+      }
+
+
+      // We want to validate if the user filled all the inputs
+    }
     return errors;
   }
 
@@ -220,19 +241,19 @@ class Transaction_income extends React.Component {
     console.log('Formatted Selected Time: ', dateString);
   }
 
- 
+
 
   onOk = (date, index, name) => {
     const newItems = this.state.items;
 
     newItems[index] = {
-      ...newItems[index], 
-        data: {
-          ...newItems[index].data,
-          [name] : date
-        }
+      ...newItems[index],
+      data: {
+        ...newItems[index].data,
+        [name]: date
       }
-    
+    }
+
 
     this.setState(
       {
@@ -274,56 +295,71 @@ class Transaction_income extends React.Component {
     })
   }
 
-  handleSubmitNewItem = (id) => {
+  handleSubmitNewItem = (index) => {
 
-    const errors = this.handleValidation(id)
+    const errors = this.handleValidation(index)
 
-    if (!errors) {
-
-      const new_items = this.state.items.map((item, index) => {
-
-        if (index !== id) {
-          return item;
-        }
-        else {
-          return {
-            ...item,
-            mode: 'view'
-          }
-        }
-      })
-
-      // backend add transaction with the create route
-      this.setState({
-        items: new_items
-      })
+    if (errors.length === 0) {
+      const { title, description, amount, category, start_date, end_date, interval, type, currency } = this.state.items[index].data;
+      debugger;
+      this.createIncome({ index, title, description, amount, category_id: category, start_date, end_date, interval, type, currency_id: currency })
     } else {
-      alert('Please fix the errors')
+      alert(errors.toString())
     }
   }
 
-  handleUpdateItem = (id) => {
+  handleUpdateItem = async (editedIndex) => {
 
-    const errors = this.handleValidation(id)
-debugger;
+    const errors = this.handleValidation(editedIndex)
+    const item = this.state.items[editedIndex];
+    const { id, title, description, amount, start_date, end_date, currency, category, interval } = item.data;
+    debugger;
+    console.log(item);
     if (errors.length === 0) {
       // Add api call for later
-      const new_items = this.state.items.map((item, index) => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ title, description, amount, start_date, end_date, currency_id: currency, category_id: category, interval, token }),
+          method: 'PUT'
+        })
+        const json = await response.json();
 
-        if (index !== id) {
-          return item;
+        if (json.success) {
+          const new_items = this.state.items.map((item, index) => {
+            const income = item.data;
+            if (index !== editedIndex) {
+              return item;
+            }
+            else {
+
+              let type = 'fixed';
+              if (income.interval > 0) {
+                type = 'recurring';
+              }
+
+              return {
+                mode: 'view',
+                data: { ...income, category: income.category_id, currency: income.currency_id, type }
+              }
+            }
+          })
+          // call the backend with the update route
+          this.setState({
+            items: new_items
+          })
+        } else {
+          debugger;
+          alert('2 ' + json.message)
         }
-        else {
-          return {
-            ...item,
-            mode: 'view'
-          }
-        }
-      })
-      // call the backend with the update route
-      this.setState({
-        items: new_items
-      })
+      } catch (error) {
+        alert('1 ' + error.message)
+      }
+
     } else {
       alert(errors.toString())
     }
@@ -358,14 +394,14 @@ debugger;
     } = this;
 
     return (
-     <>
-     {JSON.stringify(this.state.items)}
-      <IncomePage categories={this.state.categories} currencies={this.state.currencies} items={this.state.items} handleAddItem={handleAddItem}
-        onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
-        handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
-        handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
-      />
-     </>
+      <>
+        {JSON.stringify(this.state.items)}
+        <IncomePage categories={this.state.categories} currencies={this.state.currencies} items={this.state.items} handleAddItem={handleAddItem}
+          onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
+          handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
+          handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
+        />
+      </>
     )
   }
 
