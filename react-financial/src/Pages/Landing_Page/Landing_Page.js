@@ -16,10 +16,10 @@ class Landing_Page extends React.Component {
                     <Landing_Navbar />
                 </header>
 
-                <body>
+                <body className= "">
                     <br />
 
-                    <section id="landing" className="section-padding about-section">
+                    <section  id="landing" className="section-padding about-section ">
 
                         <div className="container" >
 
@@ -75,7 +75,7 @@ class Landing_Page extends React.Component {
                             <br />
                             <br />
                             <br />
-                            <div className="row">
+                            <div className="row background_landing">
                                 <div className="col-sm-6">
                                     <div className="section_title ">
                     
@@ -130,7 +130,12 @@ class Landing_Page extends React.Component {
                                 </div>
                             </div>
                         </div>
-
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                     </section>
 
 
