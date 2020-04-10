@@ -19,7 +19,7 @@ class Expenses_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'expense',
           interval: 0,
           amount: '',
           category: '',
@@ -30,7 +30,7 @@ class Expenses_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'expense',
           interval: 0,
           amount: '',
           category: '',
@@ -41,7 +41,7 @@ class Expenses_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'expense',
           interval: 0,
           amount: '',
           category: '',
@@ -52,7 +52,7 @@ class Expenses_Card extends React.Component {
         {
           title: '',
           description: '',
-          type: 'fixed',
+          type: 'expense',
           interval: 0,
           amount: '',
           category: '',
@@ -181,7 +181,7 @@ class Expenses_Card extends React.Component {
     if (expensesWithErrors.length === 0) {
       // redirect to new page
       // search: how to redirect user programmaticaly with react-router-dom
-       this.props.history.push("/porstal/dashboard"); //idk WHERE TO PUSH TO//
+       this.props.history.push("/portal/dashboard"); //idk WHERE TO PUSH TO//
       // send data to backend fetch
 
       this.state.items.map((item, index) => {
