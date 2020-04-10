@@ -18,23 +18,12 @@ class Pie2 extends React.Component {
         }
     }
 
-    /* 
-          currentdata: json2.data.map((item) => {
-            const currentdata = {
-              categoryName: item.name,
-              categoryAmount: item.amount,
-            };
-            return currentdata;
-          }), */
-
-
-
     async componentDidMount() {
 
         const token = localStorage.getItem('token');
         const categoryresponse = await fetch(`http://localhost:8000/api/categories?token=${token}`);
         const categoryjson = await categoryresponse.json();
-        if (categoryjson.status == 'success') {
+        if (categoryjson.success === true) {
             this.setState({
                 categories: categoryjson.data
             })
@@ -127,11 +116,7 @@ class Pie2 extends React.Component {
                 incomesCategoryName,
                 expensesCategoryAmount,
                 expensesCategoryName
-            })
-
-
-
-            
+            })       
         }
     }
 

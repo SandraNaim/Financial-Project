@@ -1,5 +1,4 @@
 import React from 'react';
-import Landing_Navbar from '../../Components/Landing_Navbar/Landing_Navbar';
 import "./About.css";
 
 class About extends React.Component {
@@ -12,9 +11,7 @@ class About extends React.Component {
     render() {
         return (
             <div>
-                <header>
-                    < Landing_Navbar />
-                </header>
+
 
                 <body>
                     <br />

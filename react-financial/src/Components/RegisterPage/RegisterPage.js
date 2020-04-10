@@ -24,7 +24,7 @@ class RegisterPage extends React.Component {
         const response = await fetch('http://localhost:8000/api/currencies');
         const json = await response.json();
 
-        if (json.status == 'success') {
+        if (json.success === true) {
             this.setState({
                 currencies: json.data
             })

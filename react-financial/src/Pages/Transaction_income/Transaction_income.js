@@ -17,15 +17,17 @@ class Transaction_income extends React.Component {
       transactions: [],
       currencies: [],
       categories: [],
-      items: []
+      items: [],
+     
     }
+  
   }
 
   async componentDidMount() {
 
     const response = await fetch('http://localhost:8000/api/currencies');
     const json = await response.json();
-    if (json.status == 'success') {
+    if (json.success === true) {
       this.setState({
         currencies: json.data
       })
@@ -33,7 +35,7 @@ class Transaction_income extends React.Component {
     const token = localStorage.getItem('token');
     const response2 = await fetch(`http://localhost:8000/api/categories?token=${token}`);
     const json2 = await response2.json();
-    if (json2.status == 'success') {
+    if (json2.success === true) {
       this.setState({
         categories: json2.data
       })

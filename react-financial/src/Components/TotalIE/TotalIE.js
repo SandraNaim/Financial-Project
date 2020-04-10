@@ -8,12 +8,95 @@ import CircleComponent from '../CircleComponent/CircleComponent';
 
 class TotalIE extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-  
+
+
+        this.state = {
+            incomesCategoryName: [],
+            incomesCategoryAmount: [],
+            expensesCategoryName: [],
+            expensesCategoryAmount: [],
+
+            categories: [],
+            transactions: [],
+            currencies: [],
+
+            
+        }
+    }
+
+    async componentDidMount() {
+        const token = localStorage.getItem('token');
+        const categoryresponse = await fetch(`http://localhost:8000/api/categories?token=${token}`);
+        const categoryjson = await categoryresponse.json();
+        if (categoryjson.success === true) {
+            this.setState({
+                categories: categoryjson.data
+            })
+        }
+
+
+        const response = await fetch(`http://localhost:8000/api/transactions?token=${token}`);
+        const json = await response.json();
+        if (json.success == true) {
+            const incomesCategoryName = [];
+            let incomesCategoryAmount = [];
+
+            const incomes = json.data.filter(transaction => {
+                if(transaction.type === 'income') {
+                    const category = categoryjson.data.find(cat => {
+
+                        return cat.id === parseInt(transaction.category_id);
+                    })
+                    if(category && incomesCategoryName.indexOf(category.name) === -1){
+                        incomesCategoryName.push(category.name);
+                    }
+
+                }
+                return transaction.type === 'income';
+
+            });
+           
+            incomesCategoryAmount = incomesCategoryName.map(catName => {
+                debugger;
+                let amount = 0;
+                const category = categoryjson.data.find(cat => {
+
+                    return cat.name === catName
+                });
+
+                const incomesByCategory = incomes.filter(income => {
+                    if(parseInt(income.category_id) === category.id) {
+                        amount = amount + parseInt(income.amount);
+
+                    }
+                    return parseInt(income.category_id) === category.id;
+                });
+                return amount;
+            })
+            this.setState({
+                incomesCategoryAmount,
+                incomesCategoryName,
+                //expensesCategoryAmount,
+                //expensesCategoryName
+            })       
+        }
+
+        const currencyresponse = await fetch('http://localhost:8000/api/currencies');
+        const currencyjson = await currencyresponse.json();
+
+        if (currencyjson.success === true) {
+            this.setState({
+                currencies: currencyjson.data
+            })
+        }
     }
     
     render() {
+       // const totalincome=this.state.incomesCategoryAmount.reduce((a, b) => a + b, 0)
+          
+
         return (
             <div>
                 <div className="container dashboard-container">
@@ -45,7 +128,7 @@ class TotalIE extends React.Component {
                                         <div className="col-md-5">
                                             <div className="dashboard_total">
                                                 <h3>Total Income</h3>
-                                                <p>200$</p>
+                                                    <p>200$</p>
                                             </div>
                                         <br /><br /><br />
                                             <div className="dashboard_total">

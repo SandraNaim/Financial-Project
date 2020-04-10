@@ -37,14 +37,14 @@ class App extends React.Component {
     const token = localStorage.getItem('token');
     if (token != null) {
       try {
-        const response = await fetch(`http://localhost:8000/api/categories?token=${token}`);
+        const response = await fetch(`http://localhost:8000/api/user?token=${token}`);
         const json = await response.json();
         this.setState({
           loggedIn: true
         })
       } catch (e) {
-        alert(e.message)
-        localStorage.removeItem('token')
+       // alert(e.message)
+       // localStorage.removeItem('token')
       }
     }
   }
