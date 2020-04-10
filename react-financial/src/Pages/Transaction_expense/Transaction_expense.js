@@ -4,7 +4,7 @@ import { DatePicker } from 'antd';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
 
-/* import "./Income_Card.css"; */
+/* import "./Expenses_Card.css"; */
 
 class Transaction_expense extends React.Component {
 
@@ -14,54 +14,118 @@ class Transaction_expense extends React.Component {
 
 
     this.state = {
-      items: [
-        {
-          mode: 'view',
-          data: {
-            title: '',
-            description: '',
-            type: 'fixed',
-            interval: 0,
-            amount: '',
-            category: '',
-            currency: '',
-            start_date: '',
-            end_date: ''
-          }
-        },
-        {
-          mode: 'view',
-          data: {
-            title: '',
-            description: '',
-            type: 'fixed',
-            interval: 0,
-            amount: '',
-            category: '',
-            currency: '',
-            start_date: '',
-            end_date: ''
-          }
-        },
-        {
-          mode: 'view',
-          data: {
-            title: '',
-            description: '',
-            type: 'fixed',
-            interval: 0,
-            amount: '',
-            category: '',
-            currency: '',
-            start_date: '',
-            end_date: ''
-          }
-        }
-      ]
+      transactions: [],
+      currencies: [],
+      categories: [],
+      items: []
     }
   }
 
+  async componentDidMount() {
 
+    const response = await fetch('http://localhost:8000/api/currencies');
+    const json = await response.json();
+    if (json.status == 'success') {
+      this.setState({
+        currencies: json.data
+      })
+    }
+    const token = localStorage.getItem('token');
+    const response2 = await fetch(`http://localhost:8000/api/categories?token=${token}`);
+    const json2 = await response2.json();
+    if (json2.status == 'success') {
+      this.setState({
+        categories: json2.data
+      })
+    }
+    debugger;
+    this.getExpense()
+  }
+
+
+
+  getExpense = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`http://localhost:8000/api/transactions?token=${token}`);
+      const result = await response.json();
+      debugger;
+      if (result.success) {
+        const expenses = result.data.filter(transaction => {
+          if (transaction.type === 'expense') {
+            return true;
+          } else {
+            return false;
+          }
+        })
+        const items = expenses.map(expense => {
+          let type = 'fixed';
+          if (expense.interval > 0) {
+            type = 'recurring';
+          }
+
+          return {
+            mode: 'view',
+            data: { ...expense, category: expense.category_id, currency: expense.currency_id, type }
+          }
+        })
+        this.setState({ items: items, error: "" });
+      } else {
+        this.setState({ error: result.message });
+      }
+    } catch (err) {
+      this.setState({ error: err });
+    }
+  };
+
+  createExpense = async props => {
+    try {
+      // if (fixed0){
+
+      const { index, title, description, amount, category_id, start_date, end_date, interval, type, currency_id } = props;
+      const token = localStorage.getItem('token');
+      // console.log('úrl', `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=${type}&interval=${interval}&currency_id=${currency_id}&token=${token}`);
+      const response = await fetch(
+        `http://localhost:8000/api/transactions/create?title=${title}&description=${description}&amount=${amount}&category_id=${category_id}&start_date=${start_date}&end_date=${end_date}&type=expense&interval=${interval}&currency_id=${currency_id}&token=${token}`, {
+        headers: {
+          'Accept': 'application/json',
+        }
+      }
+      );
+      const json = await response.json();
+      if (json.success) {
+        // we reproduce the user that was created in the database, locally
+        const expenseY = json.data;
+        const new_items = this.state.items.map((item, currentIndex) => {
+
+          const expense = expenseY;
+          if (index !== currentIndex) {
+            return item;
+          }
+          else {
+
+            let type = 'fixed';
+            if (expense.interval > 0) {
+              type = 'recurring';
+            }
+
+            return {
+              mode: 'view',
+              data: { ...expense, category: expense.category_id, currency: expense.currency_id, type }
+            }
+          }
+        })
+        // call the backend with the update route
+        this.setState({
+          items: new_items
+        })
+      } else {
+        this.setState({ error: json.message });
+      }
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
+  };
   onOk = (date, index, name) => {
     const newItems = this.state.items;
 
@@ -111,30 +175,62 @@ class Transaction_expense extends React.Component {
 
   handleValidation = (index) => {
 
-    let errors = true
+    let errors = [];
     const expense = this.state.items[index].data;
+
+    // We need to check the type if its recurring or fixed
 
     if (expense.type === 'fixed') {
       // On Fixed we validate the following: Title / category / amount / currency / start_date
 
-      if (expense.title !== '' && expense.category !== '' && expense.amount > 0 && expense.currency !== '' && expense.start_date !== '') {
-        errors = false;
+      if (expense.title === '') {
+        errors.push('Please fill the title');
       }
+      if (expense.category === '') {
+        errors.push('Please fill the category');
+      }
+      if (parseInt(expense.amount) <= 0) {
+        errors.push('Please fill the amount');
+      }
+      if (expense.currency === '') {
+        errors.push('Please fill the currency');
+      }
+      if (expense.start_date === '') {
+        errors.push('Please fill the start_date');
+      }
+
+
+
     } else if (expense.type === 'recurring') {
+
       // on Recurring we validate the following: Title / Category / amount / currency / start_date / interval
-      if (expense.title !== '' && expense.category !== '' && expense.amount > 0 && expense.currency !== '' && expense.start_date !== '' && expense.interval > 0) {
-        errors = false;
+      if (expense.title === '') {
+        errors.push('Please fill the title');
       }
-      // We want to validate if the user filled all the inputs
-
-      // We want to validate if the start date < end date / if the end date was specified
+      if (expense.category === '') {
+        errors.push('Please fill the category');
+      }
+      if (expense.amount <= 0) {
+        errors.push('Please fill the amount');
+      }
+      if (expense.currency === '') {
+        errors.push('Please fill the currency');
+      }
+      if (expense.interval <= 0) {
+        errors.push('Please fill the interval');
+      }
+      if (expense.currency === '') {
+        errors.push('Please fill the currency');
+      }
       if (expense.end_date !== '') {
-        if (expense.start_date < expense.end_date) {
-
-          errors = false;
+        if (expense.start_date > expense.end_date) {
+          errors.push('Please fill the end_date');
         }
+
       }
 
+
+      // We want to validate if the user filled all the inputs
     }
     return errors;
   }
@@ -145,9 +241,28 @@ class Transaction_expense extends React.Component {
     console.log('Formatted Selected Time: ', dateString);
   }
 
-  onOk = (value) => {
-    console.log('onOk: ', value);
+
+
+  onOk = (date, index, name) => {
+    const newItems = this.state.items;
+
+    newItems[index] = {
+      ...newItems[index],
+      data: {
+        ...newItems[index].data,
+        [name]: date
+      }
+    }
+
+
+    this.setState(
+      {
+        items: newItems
+      }
+    );
+
   }
+
 
   handleCancelItem = (index) => {
     const items = this.state.items;
@@ -180,58 +295,73 @@ class Transaction_expense extends React.Component {
     })
   }
 
-  handleSubmitNewItem = (id) => {
+  handleSubmitNewItem = (index) => {
 
-    const errors = this.handleValidation(id)
+    const errors = this.handleValidation(index)
 
-    if (!errors) {
-
-      const new_items = this.state.items.map((item, index) => {
-
-        if (index !== id) {
-          return item;
-        }
-        else {
-          return {
-            ...item,
-            mode: 'view'
-          }
-        }
-      })
-
-      // backend add transaction with the create route
-      this.setState({
-        items: new_items
-      })
+    if (errors.length === 0) {
+      const { title, description, amount, category, start_date, end_date, interval, type, currency } = this.state.items[index].data;
+      debugger;
+      this.createExpense({ index, title, description, amount, category_id: category, start_date, end_date, interval, type, currency_id: currency })
     } else {
-      alert('Please fix the errors')
+      alert(errors.toString())
     }
   }
 
-  handleUpdateItem = (id) => {
+  handleUpdateItem = async (editedIndex) => {
 
-    const errors = this.handleValidation(id)
-
-    if (!errors) {
+    const errors = this.handleValidation(editedIndex)
+    const item = this.state.items[editedIndex];
+    const { id, title, description, amount, start_date, end_date, currency, category, interval } = item.data;
+    debugger;
+    console.log(item);
+    if (errors.length === 0) {
       // Add api call for later
-      const new_items = this.state.items.map((item, index) => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ title, description, amount, start_date, end_date, currency_id: currency, category_id: category, interval, token }),
+          method: 'PUT'
+        })
+        const json = await response.json();
 
-        if (index !== id) {
-          return item;
+        if (json.success) {
+          const new_items = this.state.items.map((item, index) => {
+            const expense = item.data;
+            if (index !== editedIndex) {
+              return item;
+            }
+            else {
+
+              let type = 'fixed';
+              if (expense.interval > 0) {
+                type = 'recurring';
+              }
+
+              return {
+                mode: 'view',
+                data: { ...expense, category: expense.category_id, currency: expense.currency_id, type }
+              }
+            }
+          })
+          // call the backend with the update route
+          this.setState({
+            items: new_items
+          })
+        } else {
+          debugger;
+          alert('2 ' + json.message)
         }
-        else {
-          return {
-            ...item,
-            mode: 'view'
-          }
-        }
-      })
-      // call the backend with the update route
-      this.setState({
-        items: new_items
-      })
+      } catch (error) {
+        alert('1 ' + error.message)
+      }
+
     } else {
-      alert('Please fix the errors')
+      alert(errors.toString())
     }
   }
 
@@ -264,11 +394,14 @@ class Transaction_expense extends React.Component {
     } = this;
 
     return (
-      <ExpensesPage items={this.state.items} handleAddItem={handleAddItem}
-        onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
-        handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
-        handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
-      />
+      <>
+        {JSON.stringify(this.state.items)}
+        <ExpensesPage categories={this.state.categories} currencies={this.state.currencies} items={this.state.items} handleAddItem={handleAddItem}
+          onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
+          handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}
+          handleSubmitNewItem={handleSubmitNewItem} handleSwitchToUpdate={handleSwitchToUpdate} handleUpdateItem={handleUpdateItem}
+        />
+      </>
     )
   }
 
