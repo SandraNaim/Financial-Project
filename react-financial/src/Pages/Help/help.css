@@ -164,4 +164,9 @@ margin-top: 20px;
 
 .color_help {
     background-color:palegoldenrod;
+   padding: 40px;
+}
+
+.line_help {
+    text-decoration: underline;
 }

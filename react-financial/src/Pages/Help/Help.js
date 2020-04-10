@@ -94,7 +94,7 @@ class Help extends React.Component {
                                 <br />
                                 <br />
                                 <br />
-                                <h3 className="section_main_title section_main_about">Using the Transaction/Saving tables</h3>
+                                <h3 className="section_main_title section_main_about line_help">Using the Transaction/Saving tables</h3>
                                 <br />
                                 <br />
                                 <div className="row">
@@ -120,10 +120,12 @@ class Help extends React.Component {
                                 <br/>
                                 
                                 <div className="row color_help ">
+                                    
                                     <div className="col-sm-5">
                                         
                                     </div>
                                     <div className="col-sm-6">
+                                        
                                         <div class="shadow card sm-6 cardy_help ">
                                             <img src={Image2} class="card-img-top" />
                                             <div class="card-body">
@@ -188,7 +190,7 @@ class Help extends React.Component {
                                 <hr className="hr_help"/>
                                 <br />
                                 <br />
-                                <h3 className="section_main_title section_main_about">You can access your reports in the Dashboard</h3>
+                                <h3 className="section_main_title section_main_about line_help">You can access your reports in the Dashboard</h3>
                                 <br />
                                 <br />
                                 <div className="row">
@@ -233,7 +235,12 @@ class Help extends React.Component {
                                 </div>
                               
                             </div>
-
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                         </section>
 
 

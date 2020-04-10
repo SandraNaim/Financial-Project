@@ -39,7 +39,7 @@ import Setting_component from './Components/Setting_component/Setting_component'
 import Help from './Pages/Help/Help';
 
 
-ReactDOM.render(<BrowserRouter><Transaction_expense/></BrowserRouter>, document.getElementById('root'));  
+ReactDOM.render(<BrowserRouter><Help/></BrowserRouter>, document.getElementById('root'));  
 
 
 
