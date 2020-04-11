@@ -189,7 +189,7 @@ class Setting_component extends React.Component {
         <div className="row">
           <div style={{ marginLeft: "31%" }}>
             <button type="button" onClick={() => {
-              this.props.handleSwitchCategoryToView()
+              this.props.handleSwitchCategoryToView(index)
             }} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', height: "40px" }}>Cancel</button>
             <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', height: "40px" }}>Save</button>
           </div>

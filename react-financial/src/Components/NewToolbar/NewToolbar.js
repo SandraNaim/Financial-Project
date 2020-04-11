@@ -145,16 +145,25 @@ const color = ['type', [ "#2ea674","#dc3f76","#2e9ca6" , "#f96232","#2e9ca6"]]
   }
   render() {
 
-const data=[{
-  time: '17 Q2',
-  type: 'type1',
-  value: 1.2
-}, {
+const data=
+[
+  {
+    time: '17 Q0',
+  },
+  {
+    time: '17 Q1',
+    type: 'type1',
+    value: 1.2
+  },{
+    time: '17 Q1',
+    type: 'type2',
+    value: 333
+  }, {
   time: '17 Q2',
   type: 'type2',
   value: 18.3
 },{
-  time: '17 Q2',
+  time: '17 Q3',
   type: 'type2',
   value: 18.3
 }
@@ -169,9 +178,9 @@ const data=[{
 ]
     return (
       <>
-      {JSON.stringify(data)}
+      {JSON.stringify(this.props.data)}
 
-      <Chart forceFit height={400} data={data} padding='auto' scale={scale}>
+      <Chart forceFit height={400} data={this.props.data} padding='auto' scale={scale}>
         <Tooltip/>
         <Axis dataKey="time" label={label} tickLine={tickLine}/>
         <Axis dataKey="value" show={false}/>

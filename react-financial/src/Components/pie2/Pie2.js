@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import PieChartPage from "../PiChartPage/PieChartPage";
 
 
@@ -36,12 +37,12 @@ class Pie2 extends React.Component {
             let incomesCategoryAmount = [];
 
             const incomes = json.data.filter(transaction => {
-                if(transaction.type === 'income') {
+                if (transaction.type === 'income') {
                     const category = categoryjson.data.find(cat => {
 
                         return cat.id === parseInt(transaction.category_id);
                     })
-                    if(category && incomesCategoryName.indexOf(category.name) === -1){
+                    if (category && incomesCategoryName.indexOf(category.name) === -1) {
                         incomesCategoryName.push(category.name);
                     }
 
@@ -49,9 +50,8 @@ class Pie2 extends React.Component {
                 return transaction.type === 'income';
 
             });
-           
+
             incomesCategoryAmount = incomesCategoryName.map(catName => {
-                debugger;
                 let amount = 0;
                 const category = categoryjson.data.find(cat => {
 
@@ -59,8 +59,59 @@ class Pie2 extends React.Component {
                 });
 
                 const incomesByCategory = incomes.filter(income => {
-                    if(parseInt(income.category_id) === category.id) {
-                        amount = amount + parseInt(income.amount);
+                    if (parseInt(income.category_id) === category.id) {
+
+                        if (parseInt(income.interval) === 0) {
+                            amount = amount + parseInt(income.amount);
+                        } else {
+                            const { interval } = income;
+                            income.start_date = income.start_date.replace(' GMT 0300', '');
+
+                            if (income.end_date !== null) {
+                                income.end_date = income.end_date.replace(' GMT 0300', '');
+                            }
+                            const convertDateToMoment = (date)=> {
+                                date = date.replace(' GMT 0300', '');
+                                // Fri Mar 25 2020 22:21:20
+                                // 012345678901234567890234
+                                const indexedMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                                const months = indexedMonths.indexOf(date.substring(4,7));
+                                const day = parseInt(date.substring(8,10)) -1;
+                                const years = date.substring(11, 15)
+                                const hours = date.substring(16, 18)
+                                const minutes= date.substring(19, 21)
+                                const seconds = date.substring(23, 25)
+                                const moment_date = moment({ years, months, date:day, hours, minutes, seconds});
+                                return moment_date;
+
+                            }
+                            const start_date = convertDateToMoment(income.start_date)
+                            const current_date = moment();
+
+                            if (income.end_date !== null) {
+                                const end_date = convertDateToMoment(income.end_date)
+
+                                if (end_date > current_date) {
+                                    const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
+
+                                    const total_interval = parseInt(weeks_passed / interval);
+
+                                    amount = amount + total_interval * parseInt(income.amount);
+                                } else {
+                                    const weeks_passed = Math.abs(start_date.diff(end_date, 'weeks'));
+
+                                    const total_interval = parseInt(weeks_passed / interval);
+
+                                    amount = amount + total_interval * parseInt(income.amount);
+                                }
+                            } else {
+                                const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
+
+                                const total_interval = parseInt(weeks_passed / interval);
+
+                                amount = amount + total_interval * parseInt(income.amount);
+                            }
+                        }
 
                     }
                     return parseInt(income.category_id) === category.id;
@@ -76,12 +127,12 @@ class Pie2 extends React.Component {
             let expensesCategoryAmount = [];
 
             const expenses = json.data.filter(transaction => {
-                if(transaction.type === 'expense') {
+                if (transaction.type === 'expense') {
                     const category = categoryjson.data.find(cat => {
 
                         return cat.id === parseInt(transaction.category_id);
                     })
-                    if(category && expensesCategoryName.indexOf(category.name) === -1){
+                    if (category && expensesCategoryName.indexOf(category.name) === -1) {
                         expensesCategoryName.push(category.name);
                     }
 
@@ -89,7 +140,7 @@ class Pie2 extends React.Component {
                 return transaction.type === 'expense';
 
             });
-           
+
             expensesCategoryAmount = expensesCategoryName.map(catName => {
                 debugger;
                 let amount = 0;
@@ -99,8 +150,59 @@ class Pie2 extends React.Component {
                 });
 
                 const expensesByCategory = expenses.filter(expense => {
-                    if(parseInt(expense.category_id) === category.id) {
-                        amount = amount + parseInt(expense.amount);
+                    if (parseInt(expense.category_id) === category.id) {
+
+                        if (parseInt(expense.interval) === 0) {
+                            amount = amount + parseInt(expense.amount);
+                        } else {
+                            const { interval } = expense;
+                            expense.start_date = expense.start_date.replace(' GMT 0300', '');
+
+                            if (expense.end_date !== null) {
+                                expense.end_date = expense.end_date.replace(' GMT 0300', '');
+                            }
+                            const convertDateToMoment = (date)=> {
+                                date = date.replace(' GMT 0300', '');
+                                // Fri Mar 25 2020 22:21:20
+                                // 012345678901234567890234
+                                const indexedMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                                const months = indexedMonths.indexOf(date.substring(4,7));
+                                const day = parseInt(date.substring(8,10)) -1;
+                                const years = date.substring(11, 15)
+                                const hours = date.substring(16, 18)
+                                const minutes= date.substring(19, 21)
+                                const seconds = date.substring(23, 25)
+                                const moment_date = moment({ years, months, date:day, hours, minutes, seconds});
+                                return moment_date;
+
+                            }
+                            const start_date = convertDateToMoment(expense.start_date)
+                            const current_date = moment();
+
+                            if (expense.end_date !== null) {
+                                const end_date = convertDateToMoment(expense.end_date)
+
+                                if (end_date > current_date) {
+                                    const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
+
+                                    const total_interval = parseInt(weeks_passed / interval);
+
+                                    amount = amount + total_interval * parseInt(expense.amount);
+                                } else {
+                                    const weeks_passed = Math.abs(start_date.diff(end_date, 'weeks'));
+
+                                    const total_interval = parseInt(weeks_passed / interval);
+
+                                    amount = amount + total_interval * parseInt(expense.amount);
+                                }
+                            } else {
+                                const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
+
+                                const total_interval = parseInt(weeks_passed / interval);
+
+                                amount = amount + total_interval * parseInt(expense.amount);
+                            }
+                        }
 
                     }
                     return parseInt(expense.category_id) === category.id;
@@ -116,7 +218,7 @@ class Pie2 extends React.Component {
                 incomesCategoryName,
                 expensesCategoryAmount,
                 expensesCategoryName
-            })       
+            })
         }
     }
 
@@ -132,7 +234,7 @@ class Pie2 extends React.Component {
                 <div>
                     <h5><b>Expenses</b> Pie Chart</h5>
                     <br />
-                    <PieChartPage categoryName={this.state.expensesCategoryName} categoryAmount={this.state.expensesCategoryAmount}/> 
+                    <PieChartPage categoryName={this.state.expensesCategoryName} categoryAmount={this.state.expensesCategoryAmount} />
                 </div>
 
             </>

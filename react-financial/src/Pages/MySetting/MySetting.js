@@ -126,8 +126,16 @@ class MySetting extends React.Component {
         }
         )
 
-        const categories = [...this.state.categories, categoryY];
-        this.setState({ categories: new_categories, originalCategories: [...this.state.originalCategories, categoryY], error: "" });
+        const new_originalCategories = this.state.originalCategories.map((category, currentIndex) => {
+          if (editedIndex !== currentIndex) {
+            return category;
+          } else {
+            return categoryY
+          }
+        }
+        )
+
+        this.setState({ categories: new_categories, originalCategories: new_originalCategories, error: "" });
       } else {
         this.setState({ error: json.message });
       }
@@ -168,7 +176,6 @@ class MySetting extends React.Component {
         }
         )
 
-        const categories = [...this.state.categories, categoryY];
         this.setState({ categories: new_categories, originalCategories: [...this.state.originalCategories, categoryY], error: "" });
       } else {
         this.setState({ error: json.message });
@@ -209,13 +216,21 @@ class MySetting extends React.Component {
       categories: new_categories
     })
   }
-  handleSwitchCategoryToView = () => {
-    this.setState({
+  handleSwitchCategoryToView = (index) => {
+
+    const new_categories = this.state.categories.map((category, currentIndex)=> {
+
+      if(currentIndex !== index){
+        return category;
+      }else {
+        return {
           mode: 'view',
-          originalCategories:[...this.state.originalCategories],
-          /* data: {
-            name: '',
-          } */
+          data: this.state.originalCategories[index]
+        }
+      }
+    })
+    this.setState({
+          categories: new_categories
         } 
     )
   }
