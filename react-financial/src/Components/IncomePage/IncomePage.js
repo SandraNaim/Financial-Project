@@ -89,7 +89,7 @@ class IncomePage extends React.Component {
           </td>
           <td>
             <DatePicker showTime onOk={date => {
-            this.onOk(date, index, 'end_date')
+            this.props.onOk(date, index, 'end_date')
           }} />
             <p>(only fill if recurring)</p>
           </td>
@@ -220,7 +220,7 @@ class IncomePage extends React.Component {
             </ToggleButtonGroup>
           </td>
           <td><DatePicker disabled="disabled" defaultValue={start_date} showtime onOk={date => {
-            this.onOk(date, index, 'start_date')
+            this.props.onOk(date, index, 'start_date')
           }} /></td>
           <td>
             <div disabled="disabled" className="form-group">
@@ -272,7 +272,7 @@ class IncomePage extends React.Component {
           </td>
           <td>
             <DatePicker disabled="disabled" defaultValue={data.end_date !== null ? end_date : null }  showTime onOk={date => {
-            this.onOk(date, index, 'end_date')
+            this.props.onOk(date, index, 'end_date')
           }} />
             <p>(only fill if recurring)</p>
           </td>

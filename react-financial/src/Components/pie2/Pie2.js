@@ -94,20 +94,20 @@ class Pie2 extends React.Component {
                                 if (end_date > current_date) {
                                     const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
 
-                                    const total_interval = parseInt(weeks_passed / interval);
+                                    const total_interval = parseInt(weeks_passed / interval)+1;
 
                                     amount = amount + total_interval * parseInt(income.amount);
                                 } else {
                                     const weeks_passed = Math.abs(start_date.diff(end_date, 'weeks'));
 
-                                    const total_interval = parseInt(weeks_passed / interval);
+                                    const total_interval = parseInt(weeks_passed / interval)+1;
 
                                     amount = amount + total_interval * parseInt(income.amount);
                                 }
                             } else {
                                 const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
 
-                                const total_interval = parseInt(weeks_passed / interval);
+                                const total_interval = parseInt(weeks_passed / interval)+1;
 
                                 amount = amount + total_interval * parseInt(income.amount);
                             }
@@ -185,20 +185,20 @@ class Pie2 extends React.Component {
                                 if (end_date > current_date) {
                                     const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
 
-                                    const total_interval = parseInt(weeks_passed / interval);
+                                    const total_interval = parseInt(weeks_passed / interval)+1;
 
                                     amount = amount + total_interval * parseInt(expense.amount);
                                 } else {
                                     const weeks_passed = Math.abs(start_date.diff(end_date, 'weeks'));
 
-                                    const total_interval = parseInt(weeks_passed / interval);
+                                    const total_interval = parseInt(weeks_passed / interval)+1;
 
                                     amount = amount + total_interval * parseInt(expense.amount);
                                 }
                             } else {
                                 const weeks_passed = Math.abs(start_date.diff(current_date, 'weeks'));
 
-                                const total_interval = parseInt(weeks_passed / interval);
+                                const total_interval = parseInt(weeks_passed / interval)+1;
 
                                 amount = amount + total_interval * parseInt(expense.amount);
                             }

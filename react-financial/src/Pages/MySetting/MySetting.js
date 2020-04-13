@@ -62,6 +62,7 @@ class MySetting extends React.Component {
       let new_last_name = last_name !== '' ? last_name : this.state.user.last_name;
       let new_currency_id = currency_id !== '' ? currency_id : this.state.user.currency_id;
       debugger;
+      console.log(`http://localhost:8000/api/user/update?first_name=${new_first_name}&last_name=${new_last_name}&password=${password}&currency_id=${new_currency_id}&token=${token}`)
       if (password !== '') {
         response = await fetch(`http://localhost:8000/api/user/update?first_name=${new_first_name}&last_name=${new_last_name}&password=${password}&currency_id=${new_currency_id}&token=${token}`, {
           headers: {

@@ -2,6 +2,7 @@ import React from 'react';
 import './Landing_Page.css';
 import Landing_Navbar from '../../Components/Landing_Navbar/Landing_Navbar';
 import Pic1 from '../../IMAGES/Pic1.svg';
+
 class Landing_Page extends React.Component {
 
     constructor(props) {

@@ -38,7 +38,7 @@ class PieChartPage extends React.Component {
     }
     return (
       <div >
-        {JSON.stringify(dataPie)}
+        {/* {JSON.stringify(dataPie)} */}
         <MDBContainer>
 
           <Pie data={dataPie} options={{ responsive: true }} />

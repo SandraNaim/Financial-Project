@@ -13,6 +13,7 @@ import Saving from '../../Pages/Saving/Saving';
 import MySetting from '../../Pages/MySetting/MySetting';
 import About from '../../Pages/About/About';
 import Help from '../../Pages/Help/Help';
+import Landing_Page from '../../Pages/Landing_Page/Landing_Page'
 
 
 
@@ -38,7 +39,7 @@ function ToolNavbar(props) {
                             </NavIcon>
                             <NavText>
                                 Dashboard
-            </NavText>
+                            </NavText>
                         </NavItem>
                         <NavItem eventKey="portal/saving">
                             <NavIcon>
@@ -46,7 +47,7 @@ function ToolNavbar(props) {
                             </NavIcon>
                             <NavText>
                                 Saving Goals
-            </NavText>
+                            </NavText>
                         </NavItem>
                         <NavItem eventKey="transaction">
                             <NavIcon>
@@ -54,18 +55,18 @@ function ToolNavbar(props) {
                             </NavIcon>
                             <NavText>
                                 Transaction
-            </NavText>
-                            <NavItem eventKey="portal/transactions/income">
-                                <NavText>
+                            </NavText>
+                        <NavItem eventKey="portal/transactions/income">
+                            <NavText>
                                     Incomes
-                </NavText>
-                            </NavItem>
-                            <NavItem eventKey="portal/transactions/expenses">
-                                <NavText>
-                                    Expenses
-                </NavText>
-                            </NavItem>
+                            </NavText>
                         </NavItem>
+                        <NavItem eventKey="portal/transactions/expenses">
+                            <NavText>
+                                Expenses
+                            </NavText>
+                        </NavItem>
+                    </NavItem>
                         {/* <NavItem eventKey="reports">
             <NavIcon>
                 <i className="fa fa-bar-chart" style={{ fontSize: '1.75em' }} />
@@ -81,7 +82,7 @@ function ToolNavbar(props) {
                             </NavIcon>
                             <NavText>
                                 Setting
-            </NavText>
+                            </NavText>
                         </NavItem>
                         <NavItem eventKey="portal/help">
                             <NavIcon>
@@ -89,7 +90,7 @@ function ToolNavbar(props) {
                             </NavIcon>
                             <NavText>
                                 Help
-            </NavText>
+                            </NavText>
                         </NavItem>
                         <NavItem eventKey="portal/about">
                             <NavIcon>
@@ -97,22 +98,28 @@ function ToolNavbar(props) {
                             </NavIcon>
                             <NavText>
                                 About
-            </NavText>
+                            </NavText>
                         </NavItem>
 
                         <NavItem onClick={
                             event => {
                                 event.preventDefault();
-                                props.history.push('/')
+                               
                                 props.logUserOut();
+                                setTimeout(function(){
+                                    props.history.push('/');
+                                },
+                                500
+                                )
+                               
                             }
                         }>
                             <NavIcon>
                                 <i className="fa fa-sign-out fa-fw" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
                             <NavText >
-                                Log Out 
-            </NavText>
+                                Log Out
+                            </NavText>
                         </NavItem>
                     </SideNav.Nav>
                 </SideNav>
@@ -122,9 +129,9 @@ function ToolNavbar(props) {
                     <Route path="/portal/transactions/income" component={props => <Transaction_income />} />
                     <Route path="/portal/transactions/expenses" component={props => <Transaction_expense />} />
                     <Route path="/portal/setting" component={props => <MySetting />} />
-                    <Route path="/portal/about" component={props => <About/>} />
+                    <Route path="/portal/about" component={props => <About />} />
                     <Route path="/portal/help" component={props => <Help />} />
-
+                   {/*  <Route path="/" component={props => <Landing_Page />} /> */}
 
                 </main>
             </React.Fragment>

@@ -11,9 +11,9 @@ import TwoToolbar from '../TwoToolbar/TwoToolbar';
 function Graphswitch(props){
     if(props.value){
         // return <TotalBar />
-        return <TwoToolbar />
-    }
         return <Pie2 />
+    }
+        return <TwoToolbar /> 
 }
  
 

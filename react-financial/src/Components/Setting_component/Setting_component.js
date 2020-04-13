@@ -57,7 +57,7 @@ class Setting_component extends React.Component {
 
               <div className="input-group" style={{ width: "300px" }} >
 
-                <select class="form-control" onChange={event => this.props.onHandleChange(event)} value={data.currency_id} name="currency_idd" id="currency">
+                <select class="form-control" onChange={event => this.props.onHandleChange(event)} value={data.currency_id} name="currency_id" id="currency">
                   <option value=""> --- </option>
                   {
                     this.props.currencies.map(currency => {
