@@ -297,14 +297,14 @@ class ExpensesPage extends React.Component {
         <div className="row">
           <div className="col-sm-10 " >
             <div className="card mt-20">
-              <h5 className="card-header text-center " style={{ backgroundColor: 'Green', color: 'white' }}>Expense Card</h5>
+              <h5 className="card-header text-center " style={{ backgroundColor: '#B80F0A', color: 'white' }}>Expense Card</h5>
               <div >
                 <table className="table">
                   <thead className="" style={{ backgroundColor: '', border: '2px solid #dee2e6' }}>
 
                     <tr>
                       <th scope="col">Title </th>
-                      <th scope="col">Recurring</th>
+                      <th scope="col">Type</th>
                       <th className="sizeStartDate_ExpensesPage" scope="col">Start-Date</th>
                       <th scope="col">Category</th>
                       <th scope="col">Currency</th>

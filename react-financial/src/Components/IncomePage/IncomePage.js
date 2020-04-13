@@ -307,7 +307,7 @@ class IncomePage extends React.Component {
 
                     <tr>
                       <th scope="col">Title </th>
-                      <th scope="col">Recurring</th>
+                      <th scope="col">Type</th>
                       <th className="sizeStartDate_IncomePage" scope="col">Start-Date</th>
                       <th scope="col">Category</th>
                       <th scope="col">Currency</th>

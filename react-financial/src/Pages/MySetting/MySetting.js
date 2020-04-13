@@ -321,7 +321,7 @@ class MySetting extends React.Component {
 
   render() {
     return (
-      <div style={{ marginTop: "50px" }}>
+      <div style={{ marginTop: "50px", marginLeft:"3%" }}>
         <Setting_component createCategory={this.createCategory} handleCategoryInputChange={this.handleCategoryInputChange} handleCancelCategory={this.handleCancelCategory} handleAddCategory={this.handleAddCategory} categories={this.state.categories} currencies={this.state.currencies} user={this.state.user} first_name={this.state.first_name} last_name={this.state.last_name} password={this.state.password} currency_id={this.state.currency_id} name={this.state.name}
           settings={this.state.settings} onHandleChange={this.onHandleChange} onUserUpdate={this.onUserUpdate} onCategoryUpdate={this.onCategoryUpdate} handleSwitchUserToUpdate={this.handleSwitchUserToUpdate} handleSwitchUserToView={this.handleSwitchUserToView} handleSwitchCategoryToUpdate={this.handleSwitchCategoryToUpdate} handleSwitchCategoryToView={this.handleSwitchCategoryToView} modeUser={this.state.modeUser} modeCategory={this.state.modeCategory} />
       </div>

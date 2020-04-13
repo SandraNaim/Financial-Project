@@ -10,7 +10,7 @@ class About extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{marginLeft:"60px", marginBottom:"7%"}}>
 
 
                 <body>
@@ -30,7 +30,7 @@ class About extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="section_title ">
                                         <div className="section_subtitle section_title_about">About Us</div>
-                                        <h2 className="section_main_title section_main_about">WE ARE <strong>MONEY</strong></h2>
+                                        <h2 className="section_main_title section_main_about"><strong>WE ARE MONEY</strong></h2>
 
                                     </div>
                                     <div className="about-item">

@@ -19,7 +19,7 @@ class Help extends React.Component {
 
     render() {
         return (
-            <div >
+            <div style={{marginLeft:"60px", marginBottom:"10px"}}>
                 <header>
 
                 </header>
