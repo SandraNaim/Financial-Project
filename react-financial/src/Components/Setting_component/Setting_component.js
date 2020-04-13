@@ -178,24 +178,22 @@ class Setting_component extends React.Component {
       }} >
         <div className="row" style={{ marginLeft: "3%" }}>
           <div className="col-md-10 setting_one">
-            <h6>Income/Expenses Category</h6>
-            <div className="form-group " style={{ marginLeft: "8%" }}>
+            <h6>Your Category</h6>
+            <div className="form-group " style={{ marginLeft: "17%" }}>
 
               <input name='name' onChange={event => this.props.handleCategoryInputChange(event,index)} value={data.name} style={{ width: "300px" }} type="text" class="form-control" id="category" placeholder="Enter your category" />
 
 
             </div>
-
-          </div>
-        </div>
-        <div className="row">
-          <div style={{ marginLeft: "31%" }}>
             <button type="button" onClick={() => {
               this.props.handleSwitchCategoryToView(index)
             }} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', height: "40px" }}>Cancel</button>
             <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', height: "40px" }}>Save</button>
+          
+
           </div>
         </div>
+        
       </form>
     )
   }
@@ -244,11 +242,6 @@ class Setting_component extends React.Component {
 
 
             </div>
-
-          </div>
-        </div>
-        <div className="row">
-          <div style={{ marginLeft: "29%" }}>
             <button type="button" onClick={() => {
               this.props.createCategory(data, index)
             }} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', height: "40px" }}>ADD</button>
@@ -256,8 +249,10 @@ class Setting_component extends React.Component {
               this.props.handleCancelCategory(index)
             }} className="btn btn-primary" style={{ backgroundColor: 'rgb(54, 54, 112)', height: "40px" }}>Cancel</button>
 
+
           </div>
         </div>
+        
       </form>
     )
   }
