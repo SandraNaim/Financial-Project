@@ -4,7 +4,7 @@ import { DatePicker } from 'antd';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
 
-/* import "./Expenses_Card.css"; */
+/* import "./Expense_Card.css"; */
 
 class Transaction_expense extends React.Component {
 
@@ -17,15 +17,17 @@ class Transaction_expense extends React.Component {
       transactions: [],
       currencies: [],
       categories: [],
-      items: []
+      items: [],
+     
     }
+  
   }
 
   async componentDidMount() {
 
     const response = await fetch('http://localhost:8000/api/currencies');
     const json = await response.json();
-    if (json.status == 'success') {
+    if (json.success === true) {
       this.setState({
         currencies: json.data
       })
@@ -33,7 +35,7 @@ class Transaction_expense extends React.Component {
     const token = localStorage.getItem('token');
     const response2 = await fetch(`http://localhost:8000/api/categories?token=${token}`);
     const json2 = await response2.json();
-    if (json2.status == 'success') {
+    if (json2.success === true) {
       this.setState({
         categories: json2.data
       })
@@ -395,7 +397,8 @@ class Transaction_expense extends React.Component {
 
     return (
       <>
-        {JSON.stringify(this.state.items)}
+        {/* {JSON.stringify(this.state.items)} */}
+   
         <ExpensesPage categories={this.state.categories} currencies={this.state.currencies} items={this.state.items} handleAddItem={handleAddItem}
           onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
           handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}

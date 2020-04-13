@@ -4,6 +4,7 @@ import BarGraph from '../BarGraph/BarGraph';
 import './TotalIE.css';
 import LineGraph from '../LineGraph/LineGraph';
 import CircleComponent from '../CircleComponent/CircleComponent';
+import pic from '../../IMAGES/pic.jpg'
 
 
 class TotalIE extends React.Component {
@@ -158,7 +159,7 @@ class TotalIE extends React.Component {
                             </ol>
                             <br/><br/>
                             <div>
-                                <img src="pic.jpg" width="250px"  style={{marginLeft:"20px"}}/>
+                                <img src={pic} width="250px"  style={{marginLeft:"20px"}}/>
                             </div>
                         </div>
                     </div>

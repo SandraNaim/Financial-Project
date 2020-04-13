@@ -397,7 +397,7 @@ class Transaction_income extends React.Component {
 
     return (
       <>
-        {JSON.stringify(this.state.items)}
+        {/* {JSON.stringify(this.state.items)} */}
         <IncomePage categories={this.state.categories} currencies={this.state.currencies} items={this.state.items} handleAddItem={handleAddItem}
           onOk={this.onOk} handleTypeChange={this.handleTypeChange} handleInputChange={this.handleInputChange}
           handleValidation={this.handleValidation} handleCancelItem={this.handleCancelItem}

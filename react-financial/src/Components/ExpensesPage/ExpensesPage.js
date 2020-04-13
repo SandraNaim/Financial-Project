@@ -295,12 +295,9 @@ class ExpensesPage extends React.Component {
 
       <div className="fluid-container" className="wide_ExpensesPage" style={{margin:"5px"}}>
         <div className="row">
-
-
-
           <div className="col-sm-10 " >
             <div className="card mt-20">
-              <h5 className="card-header text-center " style={{ backgroundColor: 'Green', color: 'white' }}> Card</h5>
+              <h5 className="card-header text-center " style={{ backgroundColor: 'Green', color: 'white' }}>Expense Card</h5>
               <div >
                 <table className="table">
                   <thead className="" style={{ backgroundColor: '', border: '2px solid #dee2e6' }}>
@@ -336,7 +333,7 @@ class ExpensesPage extends React.Component {
                 </table>
 
                 <div className="form-group">
-                  <button  type="button" onClick={this.props.handleAddItem} className="btn btn-primary b9_ExpensesPag" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD Expenses</button>
+                  <button  type="button" onClick={this.props.handleAddItem} className="btn btn-primary b9_ExpensesPage" style={{ backgroundColor: 'rgb(54, 54, 112)', }}>+ ADD Expense</button>
                 </div>
 
               </div>

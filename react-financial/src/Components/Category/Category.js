@@ -122,7 +122,7 @@ class Category extends React.Component {
                                             <h6>Incomes/Expenses Category</h6>
                                             <div className="input-group" style={{ display: "flex", flexDirection: "column" }}>
 
-                                                <input  className="form-control" placeholder="Category 1" name="namee" type="text" required
+                                                <input  className="form-control" placeholder="Enter yoour Category" name="namee" type="text" required
                                                     onChange={this.onSubmitHandle}
                                                     value={this.state.catAdd.namee} />
                                                 {/*     <input name="" className="form-control" placeholder="Category 2" name="namee" type="text" required />
