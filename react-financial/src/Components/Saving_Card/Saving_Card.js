@@ -19,7 +19,7 @@ class Saving_Card extends React.Component {
                     <div className="col-1"></div>
                     <div className="col-sm-10 ">
                         <div className="card mt-20">
-                            <h5 className="card-header text-center " style={{ backgroundColor: 'yellow', color: 'white' }}>Saving Goals</h5>
+                            <h5 className="card-header text-center " style={{ backgroundColor: 'brown', color: 'white' }}>Saving Goals</h5>
                             <div className="card-body">
                                 <table className="table">
                                     <thead className="" style={{ backgroundColor: '', border: '2px solid #dee2e6' }}>
